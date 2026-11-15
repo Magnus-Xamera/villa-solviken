@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Villa Solviken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f4ec; --card:#fff; --ink:#1f3440; --muted:#69808a; --line:#e8e1d3;
+  --green:#2b7a78; --green-d:#17495a; --green-l:#e0f0ef;
+  --clay:#e07a5f; --clay-l:#fbe8e1;
+  --amber:#e9b44c; --amber-l:#fbf1d8;
+  --blue:#4a86a8; --blue-l:#e3eff5;
+  --red:#c0453b; --red-l:#f9e2df;
+  --sand:#efe6d4; --sky:#d4e8ec;
+  --r:18px; --shadow:0 1px 2px rgba(23,73,90,.06),0 6px 18px rgba(23,73,90,.07);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button{font:inherit;cursor:pointer}
+h1,h2,h3{margin:0;line-height:1.2}
+h2{font-family:Fraunces,Georgia,serif;font-weight:700;letter-spacing:-.01em}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px}
+.hero{position:relative;background:linear-gradient(180deg,var(--sky) 0%,#e9f2ef 62%,var(--bg) 100%);padding:22px 0 46px;overflow:hidden}
+.hero .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand h1{font-family:Fraunces,Georgia,serif;font-size:clamp(28px,7vw,40px);font-weight:700;color:var(--green-d);letter-spacing:-.02em}
+.brand small{display:block;color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.pill{font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;background:#fff;color:var(--green-d);white-space:nowrap;box-shadow:var(--shadow)}
+.pill.warn{background:var(--amber-l);color:#7a5200}
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:34px;display:block}
+nav.tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;overflow-x:auto;padding:10px 14px;background:rgba(248,244,236,.92);backdrop-filter:blur(10px);scrollbar-width:none;border-bottom:1px solid var(--line)}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs .in{display:flex;gap:6px;max-width:1100px;margin:0 auto;width:100%}
+nav.tabs button{flex:0 0 auto;border:0;background:transparent;color:var(--muted);padding:9px 15px;border-radius:99px;font-weight:700;font-size:14.5px}
+nav.tabs button:hover{background:var(--sand)}
+nav.tabs button.on{background:var(--green-d);color:#fff}
+main{padding:18px 0 90px}
+.sub{color:var(--muted);margin:4px 0 16px}
+.card{background:var(--card);border:1px solid rgba(232,225,211,.7);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat .lbl{font-size:13px;color:var(--muted);font-weight:600}
+.stat.hero2{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;border:0}
+.stat.hero2 .lbl,.stat.hero2 .note{color:#d3e8e6}
+.stat.hero2 .good{color:#c8f0d4}.stat.hero2 .bad{color:#ffd2cb}
+.stat .val{font-family:Fraunces,Georgia,serif;font-size:clamp(20px,5.5vw,28px);font-weight:700;letter-spacing:-.02em;margin:2px 0}
+.stat .note{font-size:13px;color:var(--muted)}
+.good{color:var(--green)} .bad{color:var(--red)}
+.bar{height:10px;background:#ece6d9;border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--green);border-radius:99px}
+.bar.over>i{background:var(--red)}
+.bar.done>i{background:var(--green)}
+.btn{border:0;border-radius:99px;padding:12px 22px;font-weight:700;background:var(--green-d);color:#fff;box-shadow:0 2px 6px rgba(23,73,90,.18)}
+.btn:hover{background:var(--green)}
+.btn.ghost{background:var(--green-l);color:var(--green-d);box-shadow:none}
+.btn.ghost:hover{background:#d3e6dc}
+.btn.danger{background:var(--red-l);color:var(--red)}
+.btn.small{padding:8px 14px;font-size:14px}
+.row{display:flex;align-items:center;gap:10px}
+.spread{justify-content:space-between}
+.wrapx{flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--muted)}
+.chip.on{background:var(--green-d);border-color:var(--green-d);color:#fff}
+.roomhead{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--green-l);border-radius:var(--r) var(--r) 0 0;cursor:pointer}
+.roomhead .nm{font-weight:700;flex:1}
+.roomhead .tot{font-size:14px;color:var(--green-d);font-weight:600;text-align:right}
+.section{margin-bottom:14px;background:#fff;border:1px solid rgba(232,225,211,.7);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
+.item:hover{background:#faf8f4}
+.item .t{flex:1;min-width:0}
+.item .t b{display:block;font-weight:600}
+.item.isdone .t b{text-decoration:line-through;color:var(--muted)}
+.item .meta{font-size:13px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.item .amt{text-align:right;white-space:nowrap;font-weight:700}
+.item .amt small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.chk{width:30px;height:30px;border-radius:9px;border:2px solid #c9c2b5;background:#fff;color:#fff;font-size:18px;line-height:1;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+.chk.on{background:var(--green);border-color:var(--green)}
+.tag{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--blue-l);color:var(--blue);font-weight:600}
+.tag.warn{background:var(--red-l);color:var(--red)}
+.add{display:block;width:100%;border:0;border-top:1px dashed var(--line);background:#fff;padding:12px;color:var(--green);font-weight:700}
+.add:hover{background:var(--green-l)}
+.empty{text-align:center;padding:30px 16px}
+.empty h2{margin-bottom:6px}
+.steps{display:grid;gap:10px;margin:14px 0}
+.steps .s{display:flex;gap:12px;align-items:flex-start}
+.steps .n{width:30px;height:30px;border-radius:50%;background:var(--clay);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.roomcard h3{display:flex;gap:8px;align-items:center;font-size:17px}
+.roomcard .kv{margin-top:12px}
+.roomcard .kv .top{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
+.roomcard .kv .top span:first-child{font-weight:600}
+.roomcard .actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+/* modal */
+#toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:90;max-width:90vw;padding:12px 18px;border-radius:14px;background:var(--green-d);color:#fff;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.3);display:none;text-align:center}
+#toast.err{background:var(--red)}
+#modal{position:fixed;inset:0;height:100dvh;background:rgba(20,30,26,.5);display:none;align-items:flex-end;justify-content:center;z-index:50}
+#modal.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:92vh;max-height:92dvh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:26px 26px 0 0;padding:20px 18px 0}
+@media(min-width:640px){#modal{align-items:center}.sheet{border-radius:20px}}
+.sheet h2{margin-bottom:14px}
+.f{margin-bottom:14px}
+.f label{display:block;font-weight:600;margin-bottom:5px;font-size:15px}
+.f .hint{font-size:13px;color:var(--muted);margin-top:4px}
+.f input[type=text],.f input[type=number],.f input[type=date],.f input[type=password],.f select,.f textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--green);border-color:var(--green)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{margin:0;font-weight:600}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-block;border:1.5px solid var(--line);border-radius:99px;padding:8px 14px;font-size:14px;cursor:pointer}
+.opts input:checked+span{background:var(--green-d);border-color:var(--green-d);color:#fff}
+.calc{background:var(--green-l);border-radius:10px;padding:10px 12px;font-weight:700;color:var(--green-d)}
+.donecheck{display:flex;gap:10px;align-items:center;font-weight:700;padding:12px;background:var(--green-l);border-radius:10px}
+.donecheck input{width:22px;height:22px}
+.sheet .btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;position:sticky;bottom:0;background:#fff;padding:12px 0 18px;border-top:1px solid var(--line)}
+.sheet .btns .btn{flex:1}
+/* kalender */
+.cal{border:1.5px solid var(--line);border-radius:14px;padding:10px;background:#fff}
+.cal .ch{display:flex;align-items:center;justify-content:space-between;font-weight:700;text-transform:capitalize}
+.cal .ch button{border:0;background:var(--green-l);color:var(--green-d);width:38px;height:38px;border-radius:50%;font-size:20px;line-height:1}
+.cal .g7{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:8px}
+.cal .wd{font-size:11px;color:var(--muted);text-align:center;font-weight:700;padding-bottom:2px}
+.cd{border:0;background:transparent;aspect-ratio:1;min-height:36px;border-radius:10px;font:inherit;font-weight:600;color:var(--ink);padding:0}
+.cd:hover{background:var(--sand)}
+.cd.today{outline:2px solid var(--clay);outline-offset:-2px}
+.cd.mid{background:var(--green-l);border-radius:4px}
+.cd.st,.cd.en{background:var(--green-d);color:#fff}
+.cal .sum{margin-top:10px;font-weight:700;color:var(--green-d);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.cal .sum .hint{font-weight:500}
+/* gantt */
+.gwrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
+.g-row{display:flex;border-top:1px solid var(--line);min-height:40px}
+.g-lab{flex:0 0 170px;position:sticky;left:0;background:#fff;z-index:2;padding:9px 10px;font-size:14px;border-right:1px solid var(--line);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-lab.room{background:var(--green-l);font-weight:700;color:var(--green-d)}
+.g-track{position:relative;flex:0 0 auto;background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--w) - 1px),#efeae1 calc(var(--w) - 1px),#efeae1 var(--w))}
+.g-track.room{background-color:var(--green-l)}
+.g-head .g-lab{font-weight:700}
+.g-m{position:absolute;top:0;height:30px;border-left:1px solid var(--line);padding:7px 6px;font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:clip}
+.g-w{position:absolute;top:30px;bottom:0;text-align:center;font-size:11px;color:var(--muted);padding-top:6px}
+.g-bar{position:absolute;top:8px;height:24px;border-radius:7px;color:#fff;font-size:12px;font-weight:700;padding:3px 8px;overflow:hidden;white-space:nowrap;cursor:pointer;min-width:16px}
+.g-bar.todo{background:var(--blue)} .g-bar.doing{background:var(--amber);color:#4a3200} .g-bar.late{background:var(--red)} .g-bar.ok{background:var(--green)}
+.today{position:absolute;top:0;bottom:0;width:2px;background:var(--clay);z-index:1}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:10px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:5px}
+/* tables */
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+tfoot td{font-weight:700;border-top:2px solid var(--ink)}
+.scrollx{overflow-x:auto}
+.legendlist{display:grid;gap:6px;font-size:14px}
+.legendlist div{display:flex;align-items:center;gap:8px}
+.legendlist i{width:12px;height:12px;border-radius:4px;flex:0 0 auto}
+.legendlist b{margin-left:auto;padding-left:10px}
+.hbar{display:grid;grid-template-columns:120px 1fr 100px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.hbar .bar{height:14px}
+.rep h2{margin:22px 0 10px;font-size:20px}
+.rep ul{margin:6px 0 0;padding-left:20px}
+.login{max-width:380px;margin:60px auto;text-align:center}
+.fab{position:fixed;right:16px;bottom:16px;z-index:15;box-shadow:0 8px 22px rgba(23,73,90,.35);border-radius:99px;padding:15px 24px;background:var(--clay)}
+.fab:hover{background:#d26a4f}
+@media print{
+  .hero,nav.tabs,.noprint,.fab,.add,#modal{display:none!important}
+  body{background:#fff} main{padding:0} .card,.section{break-inside:avoid;border-color:#ccc}
+  @page{margin:12mm}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modal" role="dialog" aria-modal="true"></div>
+<div id="toast" role="status"></div>
+
+<script type="module">
+/* ============================================================
+   INSTÄLLNINGAR – fyll i när ni vill dela mellan era enheter.
+   Se README.md. Lämnas FIREBASE_CONFIG som null fungerar
+   verktyget lokalt (sparas bara i den här webbläsaren).
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAQhdrseJ4ipR-qHTwrhKoSZ_We8wuL7mM",
+  authDomain: "villa-solviken-renovering.firebaseapp.com",
+  projectId: "villa-solviken-renovering",
+  storageBucket: "villa-solviken-renovering.firebasestorage.app",
+  messagingSenderId: "907303110557",
+  appId: "1:907303110557:web:a6632199a58ee0f939d174"
+};
+/* Exempel:
+const FIREBASE_CONFIG = {
+  apiKey: "...", authDomain: "...firebaseapp.com", projectId: "...",
+  storageBucket: "...", messagingSenderId: "...", appId: "..."
+};
+*/
+const SHARED_EMAIL = "loftahammar@familjen.se";   // samma e-post som ni skapar i Firebase Authentication
+
+/* ---------- Hjälpfunktioner ---------- */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const kr = n => new Intl.NumberFormat('sv-SE', {maximumFractionDigits: 0}).format(Math.round(n || 0)).replace(/ /g, ' ') + ' kr';
+const krP = n => new Intl.NumberFormat('sv-SE', {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2}).format(n || 0).replace(/\u00a0/g, ' ') + ' kr';
+const num = v => { const n = parseFloat(String(v ?? '').replace(/\s/g, '').replace(',', '.')); return isNaN(n) ? 0 : n; };
+const DAY = 86400000;
+const pd = s => { if (!s) return null; const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+const nowD = new Date();
+const TODAY = Date.UTC(nowD.getFullYear(), nowD.getMonth(), nowD.getDate());
+const fmtD = ms => new Date(ms).toLocaleDateString('sv-SE', {day: 'numeric', month: 'short', timeZone: 'UTC'});
+const isoWeek = ms => { const d = new Date(ms); d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7)); const y0 = Date.UTC(d.getUTCFullYear(), 0, 1); return Math.ceil(((d - y0) / DAY + 1) / 7); };
+const monday = ms => { const d = new Date(ms); return ms - ((d.getUTCDay() + 6) % 7) * DAY; };
+const pct = (a, b) => b > 0 ? Math.round(a / b * 100) : 0;
+
+const RENO_TYPES = ['Material', 'Hantverkare', 'Egen insats', 'Övrigt'];
+const INRED_TYPES = ['Möbel', 'Belysning', 'Textil & mattor', 'Dekoration', 'Övrigt'];
+const UNITS = ['st', 'm', 'm²', 'm³', 'förp', 'påse', 'burk', 'rulle', 'patron', 'liter', 'kg', 'timme'];
+/* Priser från fakturor från Anders Trä (senaste pris per artikel, omräknat till inkl. moms) */
+const SEED_PRICES = [
+{"name":"Snickare – timarvode","unit":"timme","price":687.5,"source":"Timarvode 550 kr exkl. moms"},
+{"name":"Elektriker – timarvode","unit":"timme","price":0,"source":"Timarvode inte satt än"},
+{"name":"VVS – timarvode","unit":"timme","price":0,"source":"Timarvode inte satt än"},
+{
+"name": "Falspanel GM alkyd 22×120",
+"unit": "m",
+"price": 26.64,
+"source": "Anders Trä, faktura 2025-10-17 (exkl. moms 21,31 kr)"
+},
+{
+"name": "Dubbelfas ändsmal GM alkyd 22×120",
+"unit": "m",
+"price": 26.64,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 21,31 kr)"
+},
+{
+"name": "OSB 3 11×2500×1200 (3 m²)",
+"unit": "st",
+"price": 239.0,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 191,2 kr)"
+},
+{
+"name": "Gips GEE13 2400×900 lättvikt",
+"unit": "st",
+"price": 113.4,
+"source": "Anders Trä, faktura 2025-12-10 (exkl. moms 90,72 kr)"
+},
+{
+"name": "Hobbyskiva furu 18×2400×300",
+"unit": "st",
+"price": 306.0,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 244,8 kr)"
+},
+{
+"name": "Hobbyskiva furu 18×2400×400",
+"unit": "st",
+"price": 436.05,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 348,84 kr)"
+},
+{
+"name": "Foder Anna furu vit 15×69",
+"unit": "m",
+"price": 45.05,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 36,04 kr)"
+},
+{
+"name": "Foder Anna furu vit 15×95",
+"unit": "m",
+"price": 57.8,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 46,24 kr)"
+},
+{
+"name": "Foder furu vitmålat 12×43",
+"unit": "m",
+"price": 28.81,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 23,05 kr)"
+},
+{
+"name": "Foder furu vitmålat 12×56",
+"unit": "m",
+"price": 33.15,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 26,52 kr)"
+},
+{
+"name": "Klackfoder furu vit 21×56",
+"unit": "m",
+"price": 48.96,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 39,17 kr)"
+},
+{
+"name": "Sockel Anna furu vit 15×95",
+"unit": "m",
+"price": 57.8,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 46,24 kr)"
+},
+{
+"name": "Svanhals furu 15×43",
+"unit": "m",
+"price": 24.56,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 19,65 kr)"
+},
+{
+"name": "Svanhals furu 15×56",
+"unit": "m",
+"price": 29.66,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 23,73 kr)"
+},
+{
+"name": "Hålkäl furu vitmålad 15×56",
+"unit": "m",
+"price": 39.01,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 31,21 kr)"
+},
+{
+"name": "Pärlspont furu 13×95",
+"unit": "m",
+"price": 18.81,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 15,05 kr)"
+},
+{
+"name": "Regel 45×45×2500",
+"unit": "m",
+"price": 15.21,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 12,17 kr)"
+},
+{
+"name": "Hörnlist furu 21×21×2500",
+"unit": "st",
+"price": 36.0,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 28,8 kr)"
+},
+{
+"name": "Hörnlist furu vitmålad 27×27×2500",
+"unit": "st",
+"price": 101.7,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 81,36 kr)"
+},
+{
+"name": "Kvartstav furu 12×12×3300",
+"unit": "st",
+"price": 28.9,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 23,12 kr)"
+},
+{
+"name": "Kvartstav vit 12×12×3300",
+"unit": "st",
+"price": 56.95,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 45,56 kr)"
+},
+{
+"name": "Foglist vit 8×33×3300",
+"unit": "st",
+"price": 66.3,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 53,04 kr)"
+},
+{
+"name": "Innerdörr massiv vit 9×21",
+"unit": "st",
+"price": 3400.0,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 2720,0 kr)"
+},
+{
+"name": "Karmset med tätningslist 9×21",
+"unit": "st",
+"price": 895.0,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 716,0 kr)"
+},
+{
+"name": "Tröskel falsad 92 mm",
+"unit": "st",
+"price": 137.5,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 110,0 kr)"
+},
+{
+"name": "Häftgrund Snickerifärg Orig BW 1 L",
+"unit": "burk",
+"price": 207.2,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 165,76 kr)"
+},
+{
+"name": "Snickerifärg Pro G15 BW 1 L",
+"unit": "burk",
+"price": 271.2,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 216,96 kr)"
+},
+{
+"name": "NO Perform+ Diamondfloor BW 2,5 L",
+"unit": "burk",
+"price": 679.2,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 543,36 kr)"
+},
+{
+"name": "Bryttillägg 1 L",
+"unit": "st",
+"price": 35.0,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 28,0 kr)"
+},
+{
+"name": "Bryttillägg 2,5 L",
+"unit": "st",
+"price": 55.0,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 44,0 kr)"
+},
+{
+"name": "Snabbklor granulat 1 kg",
+"unit": "förp",
+"price": 179.1,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 143,28 kr)"
+},
+{
+"name": "Lackpensel Quick Blue 70 mm",
+"unit": "st",
+"price": 116.1,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 92,88 kr)"
+},
+{
+"name": "Lackpensel Quick Blue 35 mm",
+"unit": "st",
+"price": 71.1,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 56,88 kr)"
+},
+{
+"name": "Fönstermask Pro UV blå 36×50 m",
+"unit": "rulle",
+"price": 126.65,
+"source": "Anders Trä, faktura 2025-12-30 (exkl. moms 101,32 kr)"
+},
+{
+"name": "Tätningstejp Sitko Flex 25 m×50",
+"unit": "rulle",
+"price": 211.65,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 169,32 kr)"
+},
+{
+"name": "Fogskum P905 All Season Flex",
+"unit": "patron",
+"price": 125.1,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 100,08 kr)"
+},
+{
+"name": "Akrylfog 0,3 L vit Nordsjö",
+"unit": "st",
+"price": 45.53,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 36,42 kr)"
+},
+{
+"name": "Slipdukark K120 98×148 (5 st)",
+"unit": "förp",
+"price": 44.91,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 35,93 kr)"
+},
+{
+"name": "Spånskiveskruv FZB TX20 4,2×42",
+"unit": "förp",
+"price": 109.65,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 87,72 kr)"
+},
+{
+"name": "Centrumborr Hikoki 14×150",
+"unit": "st",
+"price": 68.4,
+"source": "Anders Trä, faktura 2026-04-11 (exkl. moms 54,72 kr)"
+},
+{
+"name": "Armaturssladd jord DCL 0,155 m",
+"unit": "st",
+"price": 89.1,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 71,28 kr)"
+},
+{
+"name": "Takuttag infälld DCL med krok",
+"unit": "st",
+"price": 141.0,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 112,8 kr)"
+},
+{
+"name": "Vägguttag Connect 2 Home 2-väg",
+"unit": "förp",
+"price": 107.1,
+"source": "Anders Trä, faktura 2026-02-11 (exkl. moms 85,68 kr)"
+}
+];
+const DEFAULT_ROOMS = [
+  ['Kök & matsal', '🍽️'], ['Vardagsrum', '🛋️'], ['Hall', '🚪'], ['Stora badrummet & tvättstuga', '🛁'],
+  ['Oscars rum', '🛏️'], ['Emilias rum', '🛏️'], ['Williams rum', '🛏️'], ['Magnus & Johannas rum', '🛏️'], ['Lägenhetsdelen', '🏠']
+];
+const ROOM_COL = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#008300', '#6250d6', '#e34948'];
+const roomColor = i => ROOM_COL[i] || '#8a8f8c';
+
+/* ---------- Meddelanden ---------- */
+let toastT;
+function toast(msg, err) {
+  const t = $('#toast'); t.textContent = msg; t.className = err ? 'err' : ''; t.style.display = 'block';
+  clearTimeout(toastT); toastT = setTimeout(() => t.style.display = 'none', err ? 6000 : 1800);
+}
+const errText = e => { const c = e && (e.code || e.message || String(e)); return c === 'permission-denied' || c === 'Missing or insufficient permissions.' ? 'Saknar behörighet i Firebase. Kontrollera reglerna och att ni är inloggade.' : String(c || 'okänt fel'); };
+window.addEventListener('unhandledrejection', e => toast('Det gick inte att spara: ' + errText(e.reason), true));
+window.addEventListener('error', e => toast('Något gick fel: ' + (e.message || 'okänt fel'), true));
+
+/* ---------- Tillstånd ---------- */
+const S = {noStorage: false, rooms: [], items: [], prices: [], settings: {}, tab: 'oversikt', filter: 'alla',
+  collapsed: {}, mode: 'local', status: '', user: null, loading: true};
+const COLS = ['rooms', 'items', 'prices', 'settings'];
+
+/* ---------- Datalager (lokalt eller Firebase) ---------- */
+const Store = {
+  fs: null, db: null, auth: null,
+  uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); },
+  persist() {
+    try { localStorage.setItem('hus_v1', JSON.stringify({rooms: S.rooms, items: S.items, prices: S.prices, settings: S.settings})); }
+    catch (e) { if (!S.noStorage) { S.noStorage = true; toast('Förhandsvisning: ändringar sparas inte permanent. Lägg filen på GitHub Pages för att använda den på riktigt.', true); } }
+  },
+  loadLocal() {
+    try { const d = JSON.parse(localStorage.getItem('hus_v1') || '{}'); S.rooms = d.rooms || []; S.items = d.items || []; S.prices = d.prices || []; S.settings = d.settings || {}; } catch (e) {}
+  },
+  async save(col, id, data) {
+    id = id || this.uid();
+    if (S.mode === 'shared') {
+      this.fs.setDoc(this.fs.doc(this.db, col, id), data, {merge: true}).catch(e => toast('Det gick inte att spara: ' + errText(e), true));
+    } else {
+      if (col === 'settings') S.settings = {...S.settings, ...data};
+      else { const i = S[col].findIndex(x => x.id === id); if (i >= 0) S[col][i] = {...S[col][i], ...data}; else S[col].push({id, ...data}); }
+      this.persist(); render();
+    }
+    return id;
+  },
+  async del(col, id) {
+    if (S.mode === 'shared') this.fs.deleteDoc(this.fs.doc(this.db, col, id)).catch(e => toast('Det gick inte att ta bort: ' + errText(e), true));
+    else { S[col] = S[col].filter(x => x.id !== id); this.persist(); render(); }
+  }
+};
+
+async function initShared() {
+  const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
+  const [a, au, fs] = await Promise.all([import(base + 'firebase-app.js'), import(base + 'firebase-auth.js'), import(base + 'firebase-firestore.js')]);
+  const app = a.initializeApp(FIREBASE_CONFIG);
+  Store.fs = fs; Store.db = fs.getFirestore(app); Store.auth = au.getAuth(app);
+  Store.signIn = pw => au.signInWithEmailAndPassword(Store.auth, SHARED_EMAIL, pw);
+  Store.signOut = () => au.signOut(Store.auth);
+  S.mode = 'shared';
+  let unsubs = [];
+  au.onAuthStateChanged(Store.auth, user => {
+    S.user = user; S.loading = false;
+    unsubs.forEach(u => u()); unsubs = [];
+    if (user) COLS.forEach(c => unsubs.push(fs.onSnapshot(fs.collection(Store.db, c), snap => {
+      const arr = snap.docs.map(d => ({id: d.id, ...d.data()}));
+      if (c === 'settings') S.settings = arr.find(x => x.id === 'main') || {}; else S[c] = arr;
+      S.status = ''; render();
+    }, err => { S.status = 'Fel: ' + err.code; render(); })));
+    render();
+  });
+}
+
+/* ---------- Beräkningar ---------- */
+const priceOf = id => S.prices.find(p => p.id === id);
+const estOf = it => { if (it.priceId) { const p = priceOf(it.priceId); if (p) return num(p.price) * num(it.qty); } return num(it.est); };
+const hasActual = it => it.actual !== null && it.actual !== undefined && it.actual !== '';
+const fcOf = it => hasActual(it) ? num(it.actual) : estOf(it);
+const rooms = () => [...S.rooms].sort((a, b) => (a.order || 0) - (b.order || 0));
+const roomById = id => S.rooms.find(r => r.id === id);
+const itemsOf = (kind, roomId) => S.items.filter(i => i.kind === kind && (!roomId || i.room === roomId));
+function stats(kind, roomId) {
+  const its = itemsOf(kind, roomId);
+  const budget = roomId ? num(roomById(roomId)?.[kind === 'reno' ? 'budgetReno' : 'budgetInred'])
+    : S.rooms.reduce((s, r) => s + num(r[kind === 'reno' ? 'budgetReno' : 'budgetInred']), 0);
+  return {n: its.length, done: its.filter(i => i.done).length, budget,
+    est: its.reduce((s, i) => s + estOf(i), 0), actual: its.reduce((s, i) => s + (hasActual(i) ? num(i.actual) : 0), 0),
+    fc: its.reduce((s, i) => s + fcOf(i), 0)};
+}
+const sumStats = (a, b) => ({n: a.n + b.n, done: a.done + b.done, budget: a.budget + b.budget, est: a.est + b.est, actual: a.actual + b.actual, fc: a.fc + b.fc});
+const diffTxt = (budget, fc) => {
+  if (!budget && !fc) return '';
+  if (!budget) return 'Ingen budget satt';
+  const d = budget - fc;
+  return d >= 0 ? `${kr(d)} under budget` : `${kr(-d)} över budget`;
+};
+
+/* ---------- Rendering ---------- */
+const LOGO = '<svg width="48" height="48" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="17" r="9" fill="#f2b84b"/><path d="M2 30c5-4 8-4 13 0s8 4 13 0 8-4 14 0" stroke="#17495a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M2 38c5-4 8-4 13 0s8 4 13 0 8-4 14 0" stroke="#4a86a8" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
+const TABS = [['oversikt', '🏠 Översikt'], ['reno', '🔨 Renovering'], ['inred', '🛋️ Inredning'], ['tid', '📅 Tidsplan'], ['pris', '🧾 Prislista'], ['rapport', '📊 Rapport'], ['hjalp', '❓ Hjälp']];
+
+function render() {
+  const app = $('#app');
+  const title = S.settings.title || 'Villa Solviken';
+  document.title = title;
+  if (S.mode === 'shared' && !S.loading && !S.user) { app.innerHTML = loginHtml(); return; }
+  if (S.mode === 'shared' && S.loading) { app.innerHTML = '<div class="login"><h2>Laddar…</h2></div>'; return; }
+  const pill = S.status ? `<span class="pill warn">${esc(S.status)}</span>`
+    : S.mode === 'shared' ? '<span class="pill">● Delad – uppdateras live</span>'
+    : S.noStorage ? '<span class="pill warn">● Förhandsvisning – sparas inte</span>' : '<span class="pill warn">● Bara på den här enheten</span>';
+  const scrollX = $('.gwrap')?.scrollLeft;
+  app.innerHTML = `
+  <header class="hero"><div class="wrap"><div class="brand">${LOGO}<div><h1>${esc(title)}</h1><small>Loftahammar · plan &amp; budget</small></div></div>${pill}</div>
+    <svg class="wave" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20c100 18 200 18 300 0s200-18 300 0 200 18 300 0 200-18 300 0v20H0z" fill="#f8f4ec"/></svg></header>
+  <nav class="tabs"><div class="in">${TABS.map(([k, l]) => `<button data-act="tab" data-v="${k}" class="${S.tab === k ? 'on' : ''}">${l}</button>`).join('')}</div></nav>
+  <main class="wrap">${view()}</main>
+  ${(S.tab === 'reno' || S.tab === 'inred') && S.rooms.length ? `<button class="btn fab noprint" data-act="new" data-kind="${S.tab}">＋ Lägg till</button>` : ''}`;
+  if (scrollX) { const g = $('.gwrap'); if (g) g.scrollLeft = scrollX; }
+}
+
+function view() {
+  switch (S.tab) {
+    case 'oversikt': return viewOverview();
+    case 'reno': return viewList('reno');
+    case 'inred': return viewList('inred');
+    case 'tid': return viewGantt();
+    case 'pris': return viewPrices();
+    case 'rapport': return viewReport();
+    case 'hjalp': return viewHelp();
+  }
+}
+
+function loginHtml() {
+  return `<div class="login card"><div style="display:flex;justify-content:center">${LOGO}</div><h2>Villa Solviken</h2><p class="sub">Skriv det gemensamma lösenordet. Det sparas på den här enheten.</p>
+  <form id="login"><div class="f"><input type="password" id="pw" placeholder="Lösenord" autocomplete="current-password"></div>
+  <div id="loginerr" class="bad" style="margin-bottom:10px"></div><button class="btn" type="button" data-act="submitForm" style="width:100%">Logga in</button></form></div>`;
+}
+
+function stepsCard() {
+  return `<div class="card"><h2>Välkomna till Villa Solviken ☀️</h2>
+  <div class="steps">
+    <div class="s"><div class="n">1</div><div><b>Lägg in rummen</b><br><span class="sub" style="margin:0">Ett klick lägger in era rum. Sätt sedan en budget per rum.</span></div></div>
+    <div class="s"><div class="n">2</div><div><b>Skriv in vad som ska göras</b><br><span class="sub" style="margin:0">Gå till <i>Renovering</i> och tryck <b>＋ Lägg till</b>. Skriv vad, vem som gör det och vad det kostar.</span></div></div>
+    <div class="s"><div class="n">3</div><div><b>Bocka av när det är klart</b><br><span class="sub" style="margin:0">Tryck på rutan till vänster om en sak. Siffrorna räknas ut automatiskt.</span></div></div>
+    <div class="s"><div class="n">4</div><div><b>Ta ut en rapport</b><br><span class="sub" style="margin:0">Fliken <i>Rapport</i> visar vad pengarna går till och vad som är kvar att göra.</span></div></div>
+  </div></div>`;
+}
+
+function viewOverview() {
+  if (!S.rooms.length) {
+    return stepsCard() + `<div class="card empty" style="margin-top:14px"><h2>Börja med rummen</h2>
+      <p class="sub">Vi har förberett era nio rum: Kök & matsal, Vardagsrum, Hall, Stora badrummet & tvättstuga, Oscars, Emilias och Williams rum, Magnus & Johannas rum och Lägenhetsdelen.</p>
+      <button class="btn" data-act="seedRooms">Lägg in era rum</button>
+      <p style="margin:14px 0 0"><button class="btn ghost small" data-act="roomNew">Eller lägg till ett eget rum</button></p></div>`;
+  }
+  const R = stats('reno'), I = stats('inred'), T = sumStats(R, I);
+  const d = T.budget - T.fc;
+  const dtxt = !T.budget ? 'Sätt en budget per rum' : d >= 0 ? `${kr(d)} under budget` : `${kr(-d)} över budget`;
+  const stepsIfEmpty = T.n === 0 ? stepsCard() + '<div style="height:14px"></div>' : '';
+  return `${stepsIfEmpty}
+  <div class="grid g4">
+    <div class="card stat"><div class="lbl">Budget totalt</div><div class="val">${kr(T.budget)}</div><div class="note">Renovering ${kr(R.budget)} · Inredning ${kr(I.budget)}</div></div>
+    <div class="card stat hero2"><div class="lbl">Prognos (vad det kommer kosta)</div><div class="val">${kr(T.fc)}</div><div class="note ${T.budget && d < 0 ? 'bad' : 'good'}"><b>${dtxt}</b></div></div>
+    <div class="card stat"><div class="lbl">Betalt hittills</div><div class="val">${kr(T.actual)}</div><div class="note">${pct(T.actual, T.fc)}% av prognosen</div></div>
+    <div class="card stat"><div class="lbl">Klart</div><div class="val">${T.done} av ${T.n}</div><div class="bar" style="margin-top:8px"><i style="width:${pct(T.done, T.n)}%"></i></div></div>
+  </div>
+  <div class="row spread" style="margin:22px 0 12px"><h2>Rum för rum</h2><button class="btn ghost small" data-act="roomNew">＋ Nytt rum</button></div>
+  <div class="grid g2">${rooms().map(roomCard).join('')}</div>`;
+}
+
+function budgetBar(label, st) {
+  const over = st.budget && st.fc > st.budget;
+  const w = st.budget ? Math.min(100, pct(st.fc, st.budget)) : (st.fc ? 100 : 0);
+  return `<div class="kv"><div class="top"><span>${label}</span><span class="${over ? 'bad' : ''}">${kr(st.fc)} av ${st.budget ? kr(st.budget) : '–'}</span></div>
+  <div class="bar ${over ? 'over' : ''}"><i style="width:${w}%"></i></div></div>`;
+}
+function roomCard(r) {
+  const R = stats('reno', r.id), I = stats('inred', r.id), T = sumStats(R, I);
+  return `<div class="card roomcard"><div class="row spread"><h3>${esc(r.emoji || '🏠')} ${esc(r.name)}</h3><button class="btn ghost small" data-act="roomEdit" data-id="${r.id}">✏️ Budget</button></div>
+    ${budgetBar('Renovering', R)}${budgetBar('Inredning', I)}
+    <div class="kv"><div class="top"><span>Klart</span><span>${T.done} av ${T.n}</span></div><div class="bar"><i style="width:${pct(T.done, T.n)}%"></i></div></div>
+    <div class="actions"><button class="btn ghost small" data-act="new" data-kind="reno" data-room="${r.id}">＋ Renovering</button><button class="btn ghost small" data-act="new" data-kind="inred" data-room="${r.id}">＋ Inredning</button></div></div>`;
+}
+
+function viewList(kind) {
+  const isReno = kind === 'reno';
+  const head = `<h2>${isReno ? 'Renovering' : 'Inredning & möbler'}</h2>
+    <p class="sub">${isReno ? 'Allt som ska göras i huset: material, hantverkare och egen insats. Tryck på en rad för att ändra, eller på rutan för att bocka av.' : 'Möbler, lampor, textilier och annat som ska köpas. Egen lista med egen budget per rum. Bocka av när det är köpt.'}</p>`;
+  if (!S.rooms.length) return head + `<div class="card empty"><p>Lägg först in rummen på fliken Översikt.</p><button class="btn" data-act="tab" data-v="oversikt">Till Översikt</button></div>`;
+  const chips = ['alla', 'ej klara', 'klara'].map(f => `<button class="chip ${S.filter === f ? 'on' : ''}" data-act="filter" data-v="${f}">${f[0].toUpperCase() + f.slice(1)}</button>`).join('');
+  const sections = rooms().map(r => {
+    let its = itemsOf(kind, r.id).sort((a, b) => (a.start || '9') < (b.start || '9') ? -1 : 1);
+    const st = stats(kind, r.id);
+    if (S.filter === 'ej klara') its = its.filter(i => !i.done);
+    if (S.filter === 'klara') its = its.filter(i => i.done);
+    const key = kind + r.id, closed = S.collapsed[key];
+    return `<div class="section"><div class="roomhead" data-act="collapse" data-v="${key}"><span>${esc(r.emoji || '🏠')}</span><span class="nm">${esc(r.name)}</span>
+      <span class="tot">${kr(st.fc)}${st.budget ? ' / ' + kr(st.budget) : ''}<br><small>${st.done} av ${st.n} klara</small></span><span>${closed ? '▸' : '▾'}</span></div>
+      ${closed ? '' : its.map(i => itemRow(i, isReno)).join('') + `<button class="add" data-act="new" data-kind="${kind}" data-room="${r.id}">＋ Lägg till i ${esc(r.name)}</button>`}</div>`;
+  }).join('');
+  return head + `<div class="chips">${chips}</div>` + sections;
+}
+function itemRow(i, isReno) {
+  const dates = isReno && i.start && i.end ? `📅 ${fmtD(pd(i.start))}–${fmtD(pd(i.end))}` : '';
+  const price = i.priceId && priceOf(i.priceId) ? `${esc(i.qty)} ${esc(priceOf(i.priceId).unit)} ${esc(priceOf(i.priceId).name)}` : '';
+  const noPrice = !hasActual(i) && i.priceId && priceOf(i.priceId) && !num(priceOf(i.priceId).price);
+  const amt = hasActual(i) ? `${kr(i.actual)}<small>betalt</small>` : noPrice ? '<span class="bad">Pris saknas</span><small>fyll i i prislistan</small>' : `${kr(estOf(i))}<small>uppskattat</small>`;
+  const prio = !isReno && i.prio ? `<span class="tag ${i.prio === 'Måste' ? 'warn' : ''}">${esc(i.prio)}</span>` : '';
+  return `<div class="item ${i.done ? 'isdone' : ''}" data-act="edit" data-id="${i.id}">
+    <button class="chk ${i.done ? 'on' : ''}" data-act="toggle" data-id="${i.id}" aria-label="Klart">${i.done ? '✓' : ''}</button>
+    <div class="t"><b>${esc(i.title)}</b><div class="meta"><span class="tag">${esc(i.type || '')}</span>${prio}${i.who ? `<span>👤 ${esc(i.who)}</span>` : ''}${dates ? `<span>${dates}</span>` : ''}${price ? `<span>${price}</span>` : ''}${i.store ? `<span>🛒 ${esc(i.store)}</span>` : ''}</div></div>
+    <div class="amt">${amt}</div></div>`;
+}
+
+/* ---------- Gantt ---------- */
+function viewGantt() {
+  const head = `<h2>Tidsplan</h2><p class="sub">Alla renoveringssaker med start- och slutdatum visas som staplar. Tryck på en stapel för att ändra datum.</p>`;
+  const all = itemsOf('reno');
+  const dated = all.filter(i => i.start && i.end && pd(i.end) >= pd(i.start));
+  const undated = all.filter(i => !(i.start && i.end && pd(i.end) >= pd(i.start)));
+  if (!dated.length) return head + `<div class="card empty"><h2>Inga datum ännu</h2><p class="sub">Lägg till start- och slutdatum på dina renoveringssaker så dyker tidsplanen upp här.</p></div>` + undatedList(undated);
+  const W = 60;
+  let min = monday(Math.min(...dated.map(i => pd(i.start)))) - 7 * DAY;
+  let max = Math.max(...dated.map(i => pd(i.end))) + 14 * DAY;
+  if (max - min < 12 * 7 * DAY) max = min + 12 * 7 * DAY;
+  const weeks = Math.ceil((max - min) / (7 * DAY)), total = weeks * W;
+  const x = ms => (ms - min) / DAY / 7 * W;
+  let months = '', wk = '', lastM = '', mStart = 0, mLabel = '';
+  const flushM = end => { if (mLabel) months += `<div class="g-m" style="left:${mStart * W}px;width:${(end - mStart) * W}px">${mLabel}</div>`; };
+  for (let w = 0; w < weeks; w++) {
+    const ms = min + w * 7 * DAY, d = new Date(ms + 3 * DAY);
+    const mk = d.getUTCFullYear() + '-' + d.getUTCMonth();
+    if (mk !== lastM) { flushM(w); mStart = w; mLabel = d.toLocaleDateString('sv-SE', {month: 'short', year: '2-digit', timeZone: 'UTC'}).replace('.', ''); lastM = mk; }
+    wk += `<div class="g-w" style="left:${w * W}px;width:${W}px">v${isoWeek(ms + 3 * DAY)}</div>`;
+  }
+  flushM(weeks);
+  const todayLine = TODAY >= min && TODAY <= max ? `<i class="today" style="left:${x(TODAY)}px"></i>` : '';
+  let rows = `<div class="g-row g-head"><div class="g-lab">Vad</div><div class="g-track" style="--w:${W}px;width:${total}px;height:60px;background-image:none">${months}${wk}${todayLine}</div></div>`;
+  rooms().forEach(r => {
+    const its = dated.filter(i => i.room === r.id).sort((a, b) => pd(a.start) - pd(b.start));
+    if (!its.length) return;
+    rows += `<div class="g-row"><div class="g-lab room">${esc(r.emoji || '')} ${esc(r.name)}</div><div class="g-track room" style="--w:${W}px;width:${total}px;background-image:none"></div></div>`;
+    its.forEach(i => {
+      const s = pd(i.start), e = pd(i.end);
+      const cls = i.done ? 'ok' : e < TODAY ? 'late' : s <= TODAY ? 'doing' : 'todo';
+      const dep = i.dep ? S.items.find(z => z.id === i.dep) : null;
+      const warn = !i.done && dep && dep.end && pd(dep.end) >= s;
+      const left = x(s), width = Math.max(16, x(e + DAY) - left);
+      rows += `<div class="g-row"><div class="g-lab" title="${esc(i.title)}">${i.done ? '✓ ' : ''}${esc(i.title)}</div>
+        <div class="g-track" style="--w:${W}px;width:${total}px">${todayLine}
+        <div class="g-bar ${cls}" data-act="edit" data-id="${i.id}" style="left:${left}px;width:${width}px" title="${esc(i.title)}: ${fmtD(s)}–${fmtD(e)}${warn ? ' – OBS: startar före att ' + esc(dep.title) + ' är klar' : ''}">${warn ? '⚠ ' : ''}${fmtD(s)}–${fmtD(e)}</div></div></div>`;
+    });
+  });
+  return head + `<div class="legend"><span><i style="background:var(--blue)"></i>Kommer</span><span><i style="background:var(--amber)"></i>Pågår nu</span><span><i style="background:var(--green)"></i>Klart</span><span><i style="background:var(--red)"></i>Försenat</span><span><i style="background:var(--clay)"></i>Idag</span><span>⚠ = startar före att något som måste vara klart först är klart</span></div>
+  <div class="gwrap">${rows}</div>${undatedList(undated)}`;
+}
+function undatedList(und) {
+  if (!und.length) return '';
+  return `<div class="card" style="margin-top:14px"><b>Saknar datum (${und.length})</b><p class="sub" style="margin:4px 0 8px">Tryck för att lägga in start- och slutdatum.</p>
+  ${und.map(i => `<div class="item" style="padding-left:0;padding-right:0" data-act="edit" data-id="${i.id}"><div class="t"><b>${esc(i.title)}</b><div class="meta">${esc(roomById(i.room)?.name || '')}</div></div></div>`).join('')}</div>`;
+}
+
+/* ---------- Prislista ---------- */
+function viewPrices() {
+  const ps = [...S.prices].sort((a, b) => (a.name || '').localeCompare(b.name || '', 'sv'));
+  return `<div class="row spread wrapx"><h2>Prislista – material &amp; arbete</h2><div class="row wrapx"><button class="btn ghost" data-act="priceNewHour">＋ Ny hantverkare (timarvode)</button><button class="btn" data-act="priceNew">＋ Ny artikel</button></div></div>
+  <p class="sub">Här ligger priserna på det ni handlar, till exempel från Anders Trä, samt timarvodet för snickarna. Ange alltid pris <b>inklusive moms</b>. När ni lägger in en materialsak väljer ni artikel och antal, så räknas kostnaden ut. Ändrar ni priset här uppdateras alla poster som använder den.</p>
+  ${ps.length ? `<div class="card scrollx"><table><thead><tr><th>Artikel</th><th>Enhet</th><th>Pris per enhet</th><th>Källa</th></tr></thead><tbody>
+  ${ps.map(p => `<tr data-act="priceEdit" data-id="${p.id}" style="cursor:pointer"><td><b>${esc(p.name)}</b></td><td>${esc(p.unit)}</td><td>${num(p.price) ? krP(num(p.price)) : '<span class="tag warn">Fyll i pris</span>'}</td><td style="white-space:normal;min-width:200px;text-align:left;color:var(--muted)">${esc(p.source || '')}</td></tr>`).join('')}</tbody></table></div>`
+  : `<div class="card empty"><h2>Prislistan är tom</h2><p class="sub">Vi har läst ut ${SEED_PRICES.filter(p => p.unit !== 'timme').length} artiklar ur era fakturor från Anders Trä (senaste pris, omräknat till inklusive moms) och lagt till timarvode för snickare, elektriker och VVS (de två sista saknar pris tills ni fyller i det).</p><button class="btn" data-act="seedPrices">Lägg in priser från Anders Trä</button><p style="margin:14px 0 0"><button class="btn ghost small" data-act="priceNew">Eller lägg till en artikel själv</button></p></div>`}`;
+}
+
+/* ---------- Rapport ---------- */
+function viewReport() {
+  const R = stats('reno'), I = stats('inred'), T = sumStats(R, I);
+  const date = new Date().toLocaleDateString('sv-SE', {day: 'numeric', month: 'long', year: 'numeric'});
+  if (!S.rooms.length) return '<div class="card empty"><p>Lägg in rum och saker först, så kan ni ta ut en rapport här.</p></div>';
+  // per rum
+  const rs = rooms().map((r, idx) => ({r, idx, R: stats('reno', r.id), I: stats('inred', r.id)})).map(o => ({...o, T: sumStats(o.R, o.I)}));
+  const dc = v => `<span class="${v < 0 ? 'bad' : 'good'}">${v < 0 ? '−' : '+'}${kr(Math.abs(v))}</span>`;
+  const tbl = `<table><thead><tr><th>Rum</th><th>Reno budget</th><th>Reno prognos</th><th>Avvikelse</th><th>Inred budget</th><th>Inred prognos</th><th>Avvikelse</th><th>Klart</th></tr></thead><tbody>
+  ${rs.map(o => `<tr><td>${esc(o.r.emoji || '')} ${esc(o.r.name)}</td><td>${kr(o.R.budget)}</td><td>${kr(o.R.fc)}</td><td>${o.R.budget || o.R.fc ? dc(o.R.budget - o.R.fc) : ''}</td><td>${kr(o.I.budget)}</td><td>${kr(o.I.fc)}</td><td>${o.I.budget || o.I.fc ? dc(o.I.budget - o.I.fc) : ''}</td><td>${o.T.done}/${o.T.n}</td></tr>`).join('')}</tbody>
+  <tfoot><tr><td>Totalt</td><td>${kr(R.budget)}</td><td>${kr(R.fc)}</td><td>${dc(R.budget - R.fc)}</td><td>${kr(I.budget)}</td><td>${kr(I.fc)}</td><td>${dc(I.budget - I.fc)}</td><td>${T.done}/${T.n}</td></tr></tfoot></table>`;
+  // donut per rum
+  const parts = rs.filter(o => o.T.fc > 0);
+  const tot = parts.reduce((s, o) => s + o.T.fc, 0);
+  const rad = 70, circ = 2 * Math.PI * rad;
+  let off = 0;
+  const segs = parts.map(o => {
+    const len = o.T.fc / tot * circ, seg = `<circle cx="100" cy="100" r="${rad}" fill="none" stroke="${roomColor(o.idx)}" stroke-width="28" stroke-dasharray="${Math.max(0, len - 2)} ${circ}" stroke-dashoffset="${-off}" transform="rotate(-90 100 100)"><title>${esc(o.r.name)}: ${kr(o.T.fc)}</title></circle>`;
+    off += len; return seg;
+  }).join('');
+  const donut = tot ? `<div class="row wrapx" style="gap:22px;align-items:flex-start"><svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Kostnad per rum">${segs}
+    <text x="100" y="97" text-anchor="middle" font-size="12" fill="#6b7670">Totalt</text><text x="100" y="117" text-anchor="middle" font-size="16" font-weight="700" fill="#26312d">${kr(tot)}</text></svg>
+    <div class="legendlist" style="flex:1;min-width:220px">${parts.sort((a, b) => b.T.fc - a.T.fc).map(o => `<div><i style="background:${roomColor(o.idx)}"></i>${esc(o.r.name)}<b>${kr(o.T.fc)} · ${pct(o.T.fc, tot)}%</b></div>`).join('')}</div></div>` : '<p class="sub">Inga kostnader inlagda ännu.</p>';
+  // per typ
+  const byType = {};
+  S.items.forEach(i => { const k = i.type || 'Övrigt'; byType[k] = (byType[k] || 0) + fcOf(i); });
+  const types = Object.entries(byType).filter(e => e[1] > 0).sort((a, b) => b[1] - a[1]);
+  const maxT = types.length ? types[0][1] : 1;
+  const typeBars = types.map(([k, v]) => `<div class="hbar"><span>${esc(k)}</span><div class="bar"><i style="width:${v / maxT * 100}%"></i></div><b style="text-align:right">${kr(v)}</b></div>`).join('') || '<p class="sub">–</p>';
+  // listor
+  const open = S.items.filter(i => !i.done).sort((a, b) => (a.start || '9') < (b.start || '9') ? -1 : 1);
+  const doneL = S.items.filter(i => i.done);
+  const li = i => `<li><b>${esc(i.title)}</b> – ${esc(roomById(i.room)?.name || '')} – ${kr(fcOf(i))}${i.kind === 'inred' ? ' (inredning)' : ''}</li>`;
+  const over = rs.filter(o => (o.R.budget && o.R.fc > o.R.budget) || (o.I.budget && o.I.fc > o.I.budget));
+  const late = S.items.filter(i => i.kind === 'reno' && !i.done && i.end && pd(i.end) < TODAY);
+  const watch = (over.length || late.length) ? `<div class="card" style="border-color:var(--red);margin-bottom:12px"><b class="bad">Att hålla ögonen på</b><ul>
+    ${over.map(o => `<li>${esc(o.r.name)} ligger över budget${o.R.budget && o.R.fc > o.R.budget ? ` på renovering (${kr(o.R.fc - o.R.budget)} över)` : ''}${o.I.budget && o.I.fc > o.I.budget ? ` på inredning (${kr(o.I.fc - o.I.budget)} över)` : ''}</li>`).join('')}
+    ${late.map(i => `<li>Försenat: ${esc(i.title)} (skulle vara klart ${fmtD(pd(i.end))})</li>`).join('')}</ul></div>` : '';
+  const d = T.budget - T.fc;
+  return `<div class="rep"><div class="row spread wrapx noprint"><h2 style="margin:0">Rapport</h2><div class="row"><button class="btn ghost" data-act="csv">⬇ Excel (CSV)</button><button class="btn" data-act="print">🖨 Skriv ut / spara PDF</button></div></div>
+  <h1 style="margin:18px 0 2px">${esc(S.settings.title || 'Villa Solviken')}</h1><div class="sub" style="margin-top:0">Statusrapport ${date}</div>
+  <div class="grid g4" style="margin-bottom:12px">
+    <div class="card stat"><div class="lbl">Budget</div><div class="val">${kr(T.budget)}</div></div>
+    <div class="card stat"><div class="lbl">Prognos</div><div class="val">${kr(T.fc)}</div><div class="note ${T.budget && d < 0 ? 'bad' : 'good'}"><b>${diffTxt(T.budget, T.fc)}</b></div></div>
+    <div class="card stat"><div class="lbl">Betalt hittills</div><div class="val">${kr(T.actual)}</div></div>
+    <div class="card stat"><div class="lbl">Klart</div><div class="val">${T.done} av ${T.n}</div><div class="note">${pct(T.done, T.n)}%</div></div></div>
+  ${watch}
+  <h2>Vart går pengarna?</h2><div class="grid g2"><div class="card"><b>Per rum</b><div style="margin-top:10px">${donut}</div></div><div class="card"><b>Per typ av kostnad</b><div style="margin-top:10px">${typeBars}</div></div></div>
+  <h2>Budget mot prognos per rum</h2><div class="card scrollx">${tbl}</div>
+  <p class="sub" style="margin-top:8px">Prognos = faktisk kostnad där den är inlagd, annars uppskattad kostnad. Avvikelse: grönt = under budget, rött = över.</p>
+  <h2>Kvar att göra (${open.length})</h2><div class="card">${open.length ? `<ul>${open.map(li).join('')}</ul>` : 'Allt är klart! 🎉'}</div>
+  <h2>Klart (${doneL.length})</h2><div class="card">${doneL.length ? `<ul>${doneL.map(li).join('')}</ul>` : 'Inget avbockat ännu.'}</div></div>`;
+}
+
+/* ---------- Hjälp ---------- */
+function viewHelp() {
+  return `<h2>Hjälp</h2><p class="sub">Kort och enkelt. Allt sparas automatiskt.</p>
+  <div class="card"><h3>Så fyller ni i</h3><div class="steps">
+    <div class="s"><div class="n">1</div><div><b>Rum och budget</b><br>På <i>Översikt</i>: tryck <b>✏️ Budget</b> på ett rum och skriv hur mycket ni vill lägga på renovering och inredning där.</div></div>
+    <div class="s"><div class="n">2</div><div><b>Saker som ska göras</b><br>På <i>Renovering</i>: tryck <b>＋ Lägg till</b>. Välj rum, skriv vad som ska göras och vad det beräknas kosta. Lägg gärna in start- och slutdatum, så syns det i tidsplanen.</div></div>
+    <div class="s"><div class="n">3</div><div><b>Material</b><br>Välj <i>Material</i> och sedan en artikel ur prislistan plus antal, så räknas kostnaden ut åt er.</div></div>
+    <div class="s"><div class="n">4</div><div><b>Inredning</b><br>På <i>Inredning</i> lägger ni möbler, lampor och annat ni ska köpa, med en egen budget per rum.</div></div>
+    <div class="s"><div class="n">5</div><div><b>När det är klart och betalt</b><br>Tryck på rutan så blir saken avbockad. Skriv in <i>Faktisk kostnad</i> när ni vet vad det blev. Då används den i stället för uppskattningen.</div></div>
+    <div class="s"><div class="n">6</div><div><b>Rapport</b><br>På <i>Rapport</i> ser ni vart pengarna går. Tryck <b>Skriv ut / spara PDF</b> och välj "Spara som PDF".</div></div>
+  </div></div>
+  <div class="card" style="margin-top:14px"><h3>Vanliga frågor</h3>
+    <p><b>Vad är skillnaden på uppskattat och prognos?</b><br>Uppskattat är det ni tror att det kostar. Prognos är det slutliga läget: faktisk kostnad där ni skrivit in den, annars uppskattningen.</p>
+    <p><b>Kan vi ångra en radering?</b><br>Nej, så fråga varandra först. Vill ni behålla en sak utan att räkna med den, sätt kostnaden till 0.</p>
+    <p><b>Ser vi varandras ändringar?</b><br>${S.mode === 'shared' ? 'Ja, direkt, på alla enheter.' : 'Inte än. Verktyget är inte kopplat till Firebase, så allt sparas bara i den här webbläsaren. Se README.md för hur ni kopplar på delning.'}</p></div>
+  <div class="card" style="margin-top:14px"><h3>Inställningar</h3><div class="f" style="margin-top:10px"><label>Namn på projektet</label><input type="text" id="s_title" value="${esc(S.settings.title || '')}" placeholder="Villa Solviken"></div>
+    <div class="row wrapx"><button class="btn small" data-act="saveTitle">Spara namn</button>${S.mode === 'shared' ? '<button class="btn ghost small" data-act="logout">Logga ut</button>' : ''}</div></div>`;
+}
+
+/* ---------- Formulär ---------- */
+const modal = $('#modal');
+function openModal(html) { modal.innerHTML = `<div class="sheet">${html}</div>`; modal.classList.add('open'); }
+function closeModal() { modal.classList.remove('open'); modal.innerHTML = ''; }
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+const opts = (name, list, val) => `<div class="opts">${list.map(o => `<label><input type="radio" name="${name}" value="${esc(o)}" ${o === val ? 'checked' : ''}><span>${esc(o)}</span></label>`).join('')}</div>`;
+
+function itemForm(kind, id, roomPref) {
+  const isReno = kind === 'reno';
+  const it = id ? S.items.find(x => x.id === id) : {kind, room: roomPref || rooms()[0]?.id, type: isReno ? 'Material' : 'Möbel', done: false, prio: 'Bra att ha'};
+  const others = S.items.filter(x => x.kind === 'reno' && x.id !== id);
+  openModal(`<h2>${id ? 'Ändra' : 'Ny'} ${isReno ? 'renoveringssak' : 'inredningssak'}</h2>
+  <form id="itemform" data-kind="${kind}" data-id="${id || ''}">
+  <div class="f"><label>Rum</label><select name="room">${rooms().map(r => `<option value="${r.id}" ${r.id === it.room ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select></div>
+  <div class="f"><label>${isReno ? 'Vad ska göras?' : 'Vad ska köpas?'}</label><input type="text" name="title" value="${esc(it.title || '')}" placeholder="${isReno ? 't.ex. Lägga nytt golv' : 't.ex. Soffa'}"></div>
+  <div class="f"><label>${isReno ? 'Vem gör det / vad är det?' : 'Typ'}</label>${opts('type', isReno ? RENO_TYPES : INRED_TYPES, it.type)}</div>
+  ${isReno ? `<div class="f" id="matbox"><label>Välj från prislistan (material eller timarvode)</label><select name="priceId"><option value="">– Skriv in en summa själv –</option>${S.prices.map(p => `<option value="${p.id}" ${p.id === it.priceId ? 'selected' : ''}>${esc(p.name)} (${krP(num(p.price))}/${esc(p.unit)})</option>`).join('')}</select>
+     <div id="qtybox" style="margin-top:8px"><label>Antal (st, meter eller timmar)</label><input type="text" inputmode="decimal" autocomplete="off" name="qty" value="${esc(it.qty ?? '')}"><div id="calc" class="calc" style="margin-top:8px"></div></div></div>` : ''}
+  <div class="f" id="estbox"><label>Uppskattad kostnad (kr)</label><input type="text" inputmode="decimal" autocomplete="off" name="est" value="${it.priceId ? '' : esc(it.est ?? '')}" placeholder="0"><div class="hint">Det ni tror att det kommer kosta, inklusive moms.</div></div>
+  <div class="f"><label>Faktisk kostnad (kr)</label><input type="text" inputmode="decimal" autocomplete="off" name="actual" value="${hasActual(it) ? esc(it.actual) : ''}" placeholder="Fyll i när det är betalt"><div class="hint">Lämna tomt tills ni vet vad det blev.</div></div>
+  ${isReno ? `<div class="f"><label>Ansvarig / hantverkare</label><input type="text" name="who" value="${esc(it.who || '')}" placeholder="t.ex. Elektriker Nilsson, eller Magnus"></div>
+  <div class="f"><label>Tidsperiod</label><input type="hidden" name="start" value=""><input type="hidden" name="end" value=""><div id="cal" class="cal"></div></div>
+  <div class="f"><label>Måste något annat vara klart innan den här kan starta?</label><select name="dep"><option value="">– Nej, inget –</option>${others.map(o => `<option value="${o.id}" ${o.id === it.dep ? 'selected' : ''}>${esc(roomById(o.room)?.name || '')}: ${esc(o.title)}</option>`).join('')}</select><div class="hint">${others.length ? 'Välj den sak som måste bli klar först, till exempel &quot;Riva golv&quot; före &quot;Lägga nytt golv&quot;. Tidsplanen varnar om ni planerar start för tidigt.' : 'Här dyker andra renoveringssaker upp så fort ni har lagt in fler. Lägg först in den andra saken, och kom sedan tillbaka hit och välj den.'}</div></div>`
+  : `<div class="f"><label>Butik eller länk</label><input type="text" name="store" value="${esc(it.store || '')}" placeholder="t.ex. IKEA, Mio, Blocket"></div>
+  <div class="f"><label>Hur viktigt?</label>${opts('prio', ['Måste', 'Bra att ha', 'Kanske'], it.prio || 'Bra att ha')}</div>`}
+  <div class="f"><label>Anteckning</label><textarea name="note" rows="2">${esc(it.note || '')}</textarea></div>
+  <label class="donecheck"><input type="checkbox" name="done" ${it.done ? 'checked' : ''}> ${isReno ? 'Klart!' : 'Köpt!'}</label>
+  <div id="formerr" class="bad" style="margin-top:6px;font-weight:600"></div><div class="btns"><button class="btn" type="button" data-act="submitForm">Spara</button><button class="btn ghost" type="button" data-act="closeModal">Avbryt</button>${id ? '<button class="btn danger" type="button" data-act="delItem" data-id="' + id + '">Ta bort</button>' : ''}</div></form>`);
+  if (isReno) { refreshItemForm(); const f = $('#itemform'); f.addEventListener('input', refreshItemForm); calInit(it); calRender(); }
+}
+/* ---------- Periodkalender ---------- */
+const CAL = {s: null, e: null, v: 0};
+const isoD = ms => new Date(ms).toISOString().slice(0, 10);
+function calInit(it) {
+  CAL.s = it.start ? pd(it.start) : null; CAL.e = it.end ? pd(it.end) : (CAL.s || null);
+  const d = new Date(CAL.s || TODAY); CAL.v = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1);
+}
+function calRender() {
+  const box = $('#cal'); if (!box) return;
+  const v = new Date(CAL.v), y = v.getUTCFullYear(), m = v.getUTCMonth();
+  const lead = (new Date(Date.UTC(y, m, 1)).getUTCDay() + 6) % 7, days = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  let cells = '<i></i>'.repeat(lead);
+  for (let d = 1; d <= days; d++) {
+    const ms = Date.UTC(y, m, d), c = [];
+    if (ms === TODAY) c.push('today');
+    if (ms === CAL.s) c.push('st'); if (ms === CAL.e) c.push('en');
+    if (CAL.s && CAL.e && ms > CAL.s && ms < CAL.e) c.push('mid');
+    cells += `<button type="button" class="cd ${c.join(' ')}" data-act="calDay" data-v="${ms}">${d}</button>`;
+  }
+  const label = v.toLocaleDateString('sv-SE', {month: 'long', year: 'numeric', timeZone: 'UTC'});
+  const sum = !CAL.s ? '<span class="hint">Tryck på första dagen</span>'
+    : CAL.s === CAL.e ? `${fmtD(CAL.s)} <span class="hint">(en dag)</span>`
+    : !CAL.e ? `Start ${fmtD(CAL.s)} <span class="hint">– tryck på sista dagen</span>`
+    : `${fmtD(CAL.s)} – ${fmtD(CAL.e)} <span class="hint">(${(CAL.e - CAL.s) / DAY + 1} dagar)</span>`;
+  box.innerHTML = `<div class="ch"><button type="button" data-act="calPrev" aria-label="Föregående månad">‹</button><b>${label}</b><button type="button" data-act="calNext" aria-label="Nästa månad">›</button></div>
+  <div class="g7">${['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'].map(w => `<div class="wd">${w}</div>`).join('')}${cells}</div>
+  <div class="sum"><span>${sum}</span>${CAL.s ? '<button type="button" class="btn ghost small" data-act="calClear">Rensa</button>' : ''}</div>`;
+  const f = $('#itemform'); if (f) { f.elements.start.value = CAL.s ? isoD(CAL.s) : ''; f.elements.end.value = CAL.s ? isoD(CAL.e || CAL.s) : ''; }
+}
+function calPick(ms) {
+  if (!CAL.s || CAL.e) { CAL.s = ms; CAL.e = null; CAL.picked = false; }      // första trycket: ny period
+  else if (ms < CAL.s) { CAL.e = CAL.s; CAL.s = ms; CAL.picked = true; }      // andra trycket före start: byt plats
+  else { CAL.e = ms; CAL.picked = true; }                                      // andra trycket: sista dagen
+  calRender();
+}
+function calMonth(delta) { const d = new Date(CAL.v); CAL.v = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + delta, 1); calRender(); }
+
+function refreshItemForm() {
+  const f = $('#itemform'); if (!f || f.dataset.kind !== 'reno') return;
+  const type = f.elements.type.value, mat = type === 'Material' || type === 'Hantverkare';
+  $('#matbox').style.display = mat ? '' : 'none';
+  const pid = mat ? f.elements.priceId.value : '';
+  $('#qtybox').style.display = pid ? '' : 'none';
+  $('#estbox').style.display = pid ? 'none' : '';
+  const p = priceOf(pid);
+  $('#calc').textContent = p && !num(p.price) ? 'Priset är inte satt än. Fyll i det i prislistan, så räknas kostnaden ut automatiskt.' : p ? `${f.elements.qty.value || 0} ${p.unit} × ${krP(num(p.price))} = ${kr(num(p.price) * num(f.elements.qty.value))}` : '';
+}
+async function submitItem(f) {
+  const d = new FormData(f), kind = f.dataset.kind, id = f.dataset.id || null;
+  const isReno = kind === 'reno';
+  const useP = isReno && (d.get('type') === 'Material' || d.get('type') === 'Hantverkare') && d.get('priceId');
+  const actualRaw = String(d.get('actual') || '').trim();
+  const data = {kind, room: d.get('room'), title: String(d.get('title')).trim(), type: d.get('type'),
+    priceId: useP ? d.get('priceId') : '', qty: useP ? num(d.get('qty')) : null, est: useP ? 0 : num(d.get('est')),
+    actual: actualRaw === '' ? null : num(actualRaw), done: d.get('done') === 'on', note: String(d.get('note') || '').trim()};
+  if (isReno) Object.assign(data, {who: String(d.get('who') || '').trim(), start: d.get('start') || '', end: d.get('end') || '', dep: d.get('dep') || ''});
+  else Object.assign(data, {store: String(d.get('store') || '').trim(), prio: d.get('prio') || 'Bra att ha'});
+  if (!id) data.created = Date.now();
+  if (!data.title) return;
+  if (isReno) {
+    if (data.start && !data.end) data.end = data.start;
+    if (data.end && !data.start) data.start = data.end;
+    if (data.start && data.end && pd(data.end) < pd(data.start)) { $('#formerr').textContent = 'Slutdatumet ligger före startdatumet. Rätta datumen så sparas det.'; return; }
+  }
+  try { await Store.save('items', id, data); closeModal(); toast('Sparat ✓'); }
+  catch (err) { $('#formerr').textContent = 'Det gick inte att spara: ' + errText(err); }
+}
+
+function roomForm(id) {
+  const r = id ? roomById(id) : {name: '', emoji: '🏠', budgetReno: '', budgetInred: ''};
+  openModal(`<h2>${id ? 'Ändra rum' : 'Nytt rum'}</h2><form id="roomform" data-id="${id || ''}">
+  <div class="f"><label>Namn</label><input type="text" name="name" value="${esc(r.name)}"></div>
+  <div class="f"><label>Budget renovering (kr)</label><input type="text" inputmode="decimal" autocomplete="off" name="budgetReno" value="${esc(r.budgetReno ?? '')}" placeholder="0"><div class="hint">Material, hantverkare och annat som ska göras i rummet.</div></div>
+  <div class="f"><label>Budget inredning (kr)</label><input type="text" inputmode="decimal" autocomplete="off" name="budgetInred" value="${esc(r.budgetInred ?? '')}" placeholder="0"><div class="hint">Möbler, lampor, textilier med mera.</div></div>
+  <div id="formerr" class="bad" style="margin-top:6px;font-weight:600"></div><div class="btns"><button class="btn" type="button" data-act="submitForm">Spara</button><button class="btn ghost" type="button" data-act="closeModal">Avbryt</button>${id ? '<button class="btn danger" type="button" data-act="delRoom" data-id="' + id + '">Ta bort rum</button>' : ''}</div></form>`);
+}
+function priceForm(id, hour) {
+  const p = id ? priceOf(id) : hour ? {name: '', unit: 'timme', price: '', source: ''} : {name: '', unit: 'st', price: '', source: ''};
+  openModal(`<h2>${id ? 'Ändra artikel' : hour ? 'Ny hantverkare' : 'Ny artikel'}</h2><form id="priceform" data-id="${id || ''}">
+  <div class="f"><label>Artikel</label><input type="text" name="name" value="${esc(p.name)}" placeholder="${hour ? 't.ex. Målare – timarvode' : 't.ex. Gipsskiva 13 mm 900×2400'}"></div>
+  <div class="f2"><div class="f"><label>Enhet</label><select name="unit">${UNITS.map(u => `<option ${u === p.unit ? 'selected' : ''}>${u}</option>`).join('')}</select></div>
+  <div class="f"><label>Pris per enhet (kr, inkl. moms)</label><input type="text" inputmode="decimal" autocomplete="off" name="price" value="${esc(p.price)}" placeholder="${hour ? 'Lämna tomt om ni inte vet än' : ''}" ><div class="hint">${hour || p.unit === 'timme' ? 'Timarvode inklusive moms (pris exkl. moms × 1,25). Kan fyllas i senare.' : ''}</div></div></div>
+  <div class="f"><label>Källa</label><input type="text" name="source" value="${esc(p.source || '')}" placeholder="t.ex. Anders Trä, faktura 2026-10-12"></div>
+  <div id="formerr" class="bad" style="margin-top:6px;font-weight:600"></div><div class="btns"><button class="btn" type="button" data-act="submitForm">Spara</button><button class="btn ghost" type="button" data-act="closeModal">Avbryt</button>${id ? '<button class="btn danger" type="button" data-act="delPrice" data-id="' + id + '">Ta bort</button>' : ''}</div></form>`);
+}
+
+/* ---------- CSV ---------- */
+function csv() {
+  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const head = ['Rum', 'Lista', 'Typ', 'Vad', 'Uppskattat (kr)', 'Faktiskt (kr)', 'Prognos (kr)', 'Klart', 'Start', 'Slut', 'Ansvarig', 'Butik'];
+  const rows = S.items.map(i => [roomById(i.room)?.name, i.kind === 'reno' ? 'Renovering' : 'Inredning', i.type, i.title, estOf(i), hasActual(i) ? i.actual : '', fcOf(i), i.done ? 'Ja' : 'Nej', i.start, i.end, i.who, i.store]);
+  const text = '﻿' + [head, ...rows].map(r => r.map(q).join(';')).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], {type: 'text/csv;charset=utf-8'}));
+  a.download = 'renovering-' + new Date().toISOString().slice(0, 10) + '.csv'; a.click();
+}
+
+/* ---------- Händelser ---------- */
+document.addEventListener('click', async e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const a = el.dataset.act, id = el.dataset.id, v = el.dataset.v;
+  if (a === 'toggle') { e.stopPropagation(); const it = S.items.find(x => x.id === id); if (it) await Store.save('items', id, {done: !it.done}); return; }
+  switch (a) {
+    case 'tab': S.tab = v; render(); window.scrollTo(0, 0); break;
+    case 'filter': S.filter = v; render(); break;
+    case 'collapse': S.collapsed[v] = !S.collapsed[v]; render(); break;
+    case 'new': if (!S.rooms.length) { S.tab = 'oversikt'; render(); break; } itemForm(el.dataset.kind, null, el.dataset.room); break;
+    case 'edit': { const it = S.items.find(x => x.id === id); if (it) itemForm(it.kind, id); break; }
+    case 'roomNew': roomForm(); break;
+    case 'roomEdit': roomForm(id); break;
+    case 'priceNew': priceForm(); break;
+    case 'priceNewHour': priceForm(null, true); break;
+    case 'priceEdit': priceForm(id); break;
+    case 'closeModal': closeModal(); break;
+    case 'calDay': calPick(Number(v)); break;
+    case 'calPrev': calMonth(-1); break;
+    case 'calNext': calMonth(1); break;
+    case 'calClear': CAL.s = CAL.e = null; CAL.picked = false; calRender(); break;
+    case 'submitForm': handleForm(el.closest('form')); break;
+    case 'seedRooms': {
+      const base = Date.now();
+      for (let i = 0; i < DEFAULT_ROOMS.length; i++) await Store.save('rooms', null, {name: DEFAULT_ROOMS[i][0], emoji: DEFAULT_ROOMS[i][1], budgetReno: 0, budgetInred: 0, order: base + i});
+      break;
+    }
+    case 'seedPrices': for (const p of SEED_PRICES) if (!S.prices.some(x => x.name === p.name)) await Store.save('prices', null, p); break;
+    case 'delItem': if (confirm('Ta bort den här posten?')) { closeModal(); await Store.del('items', id); } break;
+    case 'delPrice': if (confirm('Ta bort artikeln? Poster som använder den behåller inte priset.')) { closeModal(); await Store.del('prices', id); } break;
+    case 'delRoom': {
+      const n = S.items.filter(i => i.room === id).length;
+      if (confirm(n ? `Rummet har ${n} poster som också tas bort. Fortsätta?` : 'Ta bort rummet?')) {
+        closeModal(); for (const i of S.items.filter(i => i.room === id)) await Store.del('items', i.id); await Store.del('rooms', id);
+      } break;
+    }
+    case 'print': window.print(); break;
+    case 'csv': csv(); break;
+    case 'saveTitle': await Store.save('settings', 'main', {title: $('#s_title').value.trim()}); break;
+    case 'logout': Store.signOut(); break;
+  }
+});
+async function handleForm(f) {
+  const err = m => { const e = $('#formerr'); if (e) e.textContent = m; };
+  try {
+    if (f.id === 'itemform') {
+      if (!f.elements.title.value.trim()) return err('Skriv vad som ska göras eller köpas.');
+      if (!f.elements.room.value) return err('Välj ett rum.');
+      return await submitItem(f);
+    }
+    if (f.id === 'roomform') {
+      const d = new FormData(f), id = f.dataset.id || null, name = String(d.get('name')).trim();
+      if (!name) return err('Skriv ett namn på rummet.');
+      const data = {name, budgetReno: num(d.get('budgetReno')), budgetInred: num(d.get('budgetInred'))};
+      if (!id) { data.emoji = '🏠'; data.order = Date.now(); }
+      await Store.save('rooms', id, data); closeModal(); toast('Sparat ✓'); return;
+    }
+    if (f.id === 'priceform') {
+      const d = new FormData(f), id = f.dataset.id || null, name = String(d.get('name')).trim();
+      if (!name) return err('Skriv ett namn på artikeln.');
+      if (!String(d.get('price')).trim() && d.get('unit') !== 'timme') return err('Skriv ett pris per enhet.');
+      await Store.save('prices', id, {name, unit: d.get('unit'), price: num(d.get('price')), source: String(d.get('source') || '').trim()});
+      closeModal(); toast('Sparat ✓'); return;
+    }
+    if (f.id === 'login') {
+      try { await Store.signIn($('#pw').value); } catch (e) { $('#loginerr').textContent = 'Fel lösenord, försök igen.'; }
+    }
+  } catch (e) { err('Det gick inte att spara: ' + errText(e)); }
+}
+document.addEventListener('submit', e => { e.preventDefault(); handleForm(e.target); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('input:not([type=checkbox]):not([type=radio])') && e.target.form) { e.preventDefault(); handleForm(e.target.form); }
+});
+
+/* ---------- Start ---------- */
+(async function start() {
+  if (FIREBASE_CONFIG) {
+    try { await initShared(); return; }
+    catch (err) { console.error(err); S.mode = 'local'; S.status = 'Kunde inte ansluta till Firebase'; }
+  }
+  Store.loadLocal(); S.loading = false; render();
+})();
+</script>
+</body>
+</html>
