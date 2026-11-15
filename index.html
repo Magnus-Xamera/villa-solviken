@@ -5,154 +5,172 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Villa Solviken</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f8f4ec; --card:#fff; --ink:#1f3440; --muted:#69808a; --line:#e8e1d3;
-  --green:#2b7a78; --green-d:#17495a; --green-l:#e0f0ef;
-  --clay:#e07a5f; --clay-l:#fbe8e1;
-  --amber:#e9b44c; --amber-l:#fbf1d8;
-  --blue:#4a86a8; --blue-l:#e3eff5;
-  --red:#c0453b; --red-l:#f9e2df;
-  --sand:#efe6d4; --sky:#d4e8ec;
-  --r:18px; --shadow:0 1px 2px rgba(23,73,90,.06),0 6px 18px rgba(23,73,90,.07);
+  --bg:#eef2f4; --card:#fff; --ink:#0f2230; --muted:#62768a; --line:#e3e9ee;
+  --green:#12936f; --green-d:#0b3d4f; --green-l:#e4f3f0;
+  --clay:#ff7a59; --clay-l:#ffe9e2;
+  --amber:#f0a928; --amber-l:#fdf0d2;
+  --blue:#3b82c4; --blue-l:#e6f0fa;
+  --red:#d2453b; --red-l:#fbe6e3;
+  --sand:#e8eef2; --sky:#cfe3ec;
+  --r:20px; --fh:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --shadow:0 1px 0 rgba(255,255,255,.9) inset,0 1px 2px rgba(15,34,48,.06),0 10px 24px -8px rgba(15,34,48,.14),0 28px 48px -28px rgba(15,34,48,.22);
+  --shadow-s:0 1px 0 rgba(255,255,255,.8) inset,0 1px 2px rgba(15,34,48,.08),0 4px 10px -3px rgba(15,34,48,.14);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{margin:0;color:var(--ink);font:15.5px/1.5 var(--fh);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1100px 600px at 85% -10%,#dcebf1 0,transparent 60%),radial-gradient(900px 500px at -10% 20%,#f3ece4 0,transparent 55%),var(--bg);background-attachment:fixed}
 button{font:inherit;cursor:pointer}
 h1,h2,h3{margin:0;line-height:1.2}
-h2{font-family:Fraunces,Georgia,serif;font-weight:700;letter-spacing:-.01em}
+h2{font-family:var(--fh);font-weight:800;letter-spacing:-.025em}
+svg.ic{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.18em;flex:0 0 auto}
 .wrap{max-width:1100px;margin:0 auto;padding:0 14px}
-.hero{position:relative;background:linear-gradient(180deg,var(--sky) 0%,#e9f2ef 62%,var(--bg) 100%);padding:22px 0 46px;overflow:hidden}
-.hero .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+/* hero */
+.hero{position:relative;height:250px;overflow:hidden;color:#fff;border-radius:0 0 34px 34px;box-shadow:0 20px 40px -24px rgba(11,61,79,.55);isolation:isolate}
+.hero .scene,.hero .scene svg,.hero .photo{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .photo{object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(6,28,40,.55) 0%,rgba(6,28,40,.12) 42%,rgba(6,28,40,.5) 100%)}
+.hero .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding-top:16px;padding-bottom:50px}
+.hero .top{display:flex;align-items:center;justify-content:flex-end;gap:10px}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
-.brand h1{font-family:Fraunces,Georgia,serif;font-size:clamp(28px,7vw,40px);font-weight:700;color:var(--green-d);letter-spacing:-.02em}
-.brand small{display:block;color:var(--muted);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
-.pill{font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px;background:#fff;color:var(--green-d);white-space:nowrap;box-shadow:var(--shadow)}
-.pill.warn{background:var(--amber-l);color:#7a5200}
-.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:34px;display:block}
-nav.tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;overflow-x:auto;padding:10px 14px;background:rgba(248,244,236,.92);backdrop-filter:blur(10px);scrollbar-width:none;border-bottom:1px solid var(--line)}
-nav.tabs::-webkit-scrollbar{display:none}
-nav.tabs .in{display:flex;gap:6px;max-width:1100px;margin:0 auto;width:100%}
-nav.tabs button{flex:0 0 auto;border:0;background:transparent;color:var(--muted);padding:9px 15px;border-radius:99px;font-weight:700;font-size:14.5px}
-nav.tabs button:hover{background:var(--sand)}
-nav.tabs button.on{background:var(--green-d);color:#fff}
-main{padding:18px 0 90px}
+.brand .logo{filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.brand h1{font-family:var(--fh);font-size:clamp(30px,8vw,46px);font-weight:800;color:#fff;letter-spacing:-.035em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.brand small{display:block;color:rgba(255,255,255,.85);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.pill{font-size:12px;font-weight:700;padding:7px 13px;border-radius:99px;background:rgba(255,255,255,.18);color:#fff;white-space:nowrap;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pill.warn{background:rgba(253,240,210,.92);color:#7a5200;border-color:transparent}
+/* nav */
+nav.tabs{position:sticky;top:10px;z-index:20;margin:-30px 0 0;padding:0 12px;pointer-events:none}
+nav.tabs .in{display:flex;gap:2px;max-width:1100px;margin:0 auto;padding:6px;overflow-x:auto;scrollbar-width:none;pointer-events:auto;
+  background:rgba(255,255,255,.78);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border:1px solid rgba(255,255,255,.9);border-radius:22px;box-shadow:0 1px 0 #fff inset,0 12px 30px -10px rgba(15,34,48,.3)}
+nav.tabs .in::-webkit-scrollbar{display:none}
+nav.tabs button{flex:0 0 auto;display:flex;align-items:center;gap:8px;border:0;background:transparent;color:var(--muted);padding:10px 15px;border-radius:16px;font-weight:700;font-size:14px;transition:background .15s,color .15s}
+nav.tabs button:hover{background:rgba(15,34,48,.05);color:var(--ink)}
+nav.tabs button.on{background:linear-gradient(180deg,#14566d,#0b3d4f);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 6px 14px -4px rgba(11,61,79,.6)}
+main{padding:34px 0 100px}
 .sub{color:var(--muted);margin:4px 0 16px}
-.card{background:var(--card);border:1px solid rgba(232,225,211,.7);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
-.grid{display:grid;gap:12px}
+.card{background:linear-gradient(180deg,#fff,#fbfcfd);border:1px solid rgba(255,255,255,.9);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+.roomcard{transition:transform .2s,box-shadow .2s}
+.roomcard:hover{transform:translateY(-3px)}
+.grid{display:grid;gap:14px}
 .g4{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
 .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.stat .lbl{font-size:13px;color:var(--muted);font-weight:600}
-.stat.hero2{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;border:0}
-.stat.hero2 .lbl,.stat.hero2 .note{color:#d3e8e6}
-.stat.hero2 .good{color:#c8f0d4}.stat.hero2 .bad{color:#ffd2cb}
-.stat .val{font-family:Fraunces,Georgia,serif;font-size:clamp(20px,5.5vw,28px);font-weight:700;letter-spacing:-.02em;margin:2px 0}
+.stat .lbl{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.02em}
+.stat.hero2{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 0% 0%,#1e7f95 0,transparent 55%),linear-gradient(145deg,#0f5268,#082f3d);color:#fff;border:0;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 18px 32px -14px rgba(8,47,61,.7)}
+.stat.hero2::after{content:"";position:absolute;right:-30px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%)}
+.stat.hero2 .lbl,.stat.hero2 .note{color:#c4dfe6}
+.stat.hero2 .good{color:#8ff0cc}.stat.hero2 .bad{color:#ffc1b8}
+.stat .val{font-family:var(--fh);font-size:clamp(21px,5.5vw,30px);font-weight:800;letter-spacing:-.03em;margin:3px 0}
 .stat .note{font-size:13px;color:var(--muted)}
 .good{color:var(--green)} .bad{color:var(--red)}
-.bar{height:10px;background:#ece6d9;border-radius:99px;overflow:hidden}
-.bar>i{display:block;height:100%;background:var(--green);border-radius:99px}
-.bar.over>i{background:var(--red)}
-.bar.done>i{background:var(--green)}
-.btn{border:0;border-radius:99px;padding:12px 22px;font-weight:700;background:var(--green-d);color:#fff;box-shadow:0 2px 6px rgba(23,73,90,.18)}
-.btn:hover{background:var(--green)}
-.btn.ghost{background:var(--green-l);color:var(--green-d);box-shadow:none}
-.btn.ghost:hover{background:#d3e6dc}
-.btn.danger{background:var(--red-l);color:var(--red)}
-.btn.small{padding:8px 14px;font-size:14px}
+.bar{height:11px;background:#e3eaef;border-radius:99px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,34,48,.18)}
+.bar>i{display:block;height:100%;background:linear-gradient(180deg,#2cc298,#0e8a68);border-radius:99px;box-shadow:0 1px 0 rgba(255,255,255,.5) inset}
+.bar.over>i{background:linear-gradient(180deg,#f0736a,#c53a30)}
+.bar.done>i{background:linear-gradient(180deg,#2cc298,#0e8a68)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:12px 22px;font-weight:700;color:#fff;background:linear-gradient(180deg,#14566d,#0b3d4f);box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 8px 16px -6px rgba(11,61,79,.55);transition:transform .12s,box-shadow .12s,filter .12s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 2px 6px -2px rgba(11,61,79,.5)}
+.btn.ghost{background:linear-gradient(180deg,#fff,#eef3f6);color:var(--green-d);box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(15,34,48,.08),0 3px 8px -3px rgba(15,34,48,.18)}
+.btn.danger{background:var(--red-l);color:var(--red);box-shadow:0 0 0 1px rgba(210,69,59,.2)}
+.btn.small{padding:8px 14px;font-size:14px;border-radius:12px}
 .row{display:flex;align-items:center;gap:10px}
 .spread{justify-content:space-between}
 .wrapx{flex-wrap:wrap}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--muted)}
-.chip.on{background:var(--green-d);border-color:var(--green-d);color:#fff}
-.roomhead{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--green-l);border-radius:var(--r) var(--r) 0 0;cursor:pointer}
-.roomhead .nm{font-weight:700;flex:1}
-.roomhead .tot{font-size:14px;color:var(--green-d);font-weight:600;text-align:right}
-.section{margin-bottom:14px;background:#fff;border:1px solid rgba(232,225,211,.7);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
-.item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
-.item:hover{background:#faf8f4}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:0;background:#fff;border-radius:99px;padding:8px 15px;font-weight:700;font-size:14px;color:var(--muted);box-shadow:var(--shadow-s)}
+.chip.on{background:linear-gradient(180deg,#14566d,#0b3d4f);color:#fff}
+.roomhead{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(180deg,#f3f8fa,#e9f1f5);cursor:pointer}
+.roomhead .nm{font-weight:800;flex:1;letter-spacing:-.01em}
+.roomhead .tot{font-size:14px;color:var(--green-d);font-weight:700;text-align:right}
+.ico{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:11px;color:#fff;background:linear-gradient(145deg,#2a8aa3,#0b3d4f);box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 5px 10px -3px rgba(11,61,79,.5);flex:0 0 auto}
+.section{margin-bottom:16px;background:#fff;border:1px solid rgba(255,255,255,.9);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.item{display:flex;align-items:center;gap:12px;padding:13px 16px;border-top:1px solid var(--line);cursor:pointer;transition:background .12s}
+.item:hover{background:#f6f9fb}
 .item .t{flex:1;min-width:0}
-.item .t b{display:block;font-weight:600}
+.item .t b{display:block;font-weight:700}
 .item.isdone .t b{text-decoration:line-through;color:var(--muted)}
-.item .meta{font-size:13px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
-.item .amt{text-align:right;white-space:nowrap;font-weight:700}
+.item .meta{font-size:13px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;margin-top:3px;align-items:center}
+.item .meta span{display:inline-flex;align-items:center;gap:4px}
+.item .amt{text-align:right;white-space:nowrap;font-weight:800}
 .item .amt small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-.chk{width:30px;height:30px;border-radius:9px;border:2px solid #c9c2b5;background:#fff;color:#fff;font-size:18px;line-height:1;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
-.chk.on{background:var(--green);border-color:var(--green)}
-.tag{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--blue-l);color:var(--blue);font-weight:600}
+.chk{width:30px;height:30px;border-radius:10px;border:0;background:linear-gradient(180deg,#fff,#eef2f5);color:#fff;line-height:1;flex:0 0 auto;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px #c5d0d8,0 1px 2px rgba(15,34,48,.1)}
+.chk.on{background:linear-gradient(180deg,#2cc298,#0e8a68);box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 6px 12px -4px rgba(14,138,104,.7)}
+.tag{font-size:12px;padding:3px 9px;border-radius:99px;background:var(--blue-l);color:var(--blue);font-weight:700}
 .tag.warn{background:var(--red-l);color:var(--red)}
-.add{display:block;width:100%;border:0;border-top:1px dashed var(--line);background:#fff;padding:12px;color:var(--green);font-weight:700}
+.add{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:0;border-top:1px dashed #cfd9e0;background:#fff;padding:13px;color:var(--green);font-weight:800}
 .add:hover{background:var(--green-l)}
-.empty{text-align:center;padding:30px 16px}
+.empty{text-align:center;padding:34px 16px}
 .empty h2{margin-bottom:6px}
-.steps{display:grid;gap:10px;margin:14px 0}
+.steps{display:grid;gap:12px;margin:14px 0}
 .steps .s{display:flex;gap:12px;align-items:flex-start}
-.steps .n{width:30px;height:30px;border-radius:50%;background:var(--clay);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.roomcard h3{display:flex;gap:8px;align-items:center;font-size:17px}
-.roomcard .kv{margin-top:12px}
-.roomcard .kv .top{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
-.roomcard .kv .top span:first-child{font-weight:600}
-.roomcard .actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.steps .n{width:30px;height:30px;border-radius:50%;background:linear-gradient(145deg,#ff9a7e,#ff6a45);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 6px 12px -4px rgba(255,106,69,.7)}
+.roomcard h3{display:flex;gap:10px;align-items:center;font-size:17px;font-weight:800;letter-spacing:-.01em}
+.roomcard .kv{margin-top:14px}
+.roomcard .kv .top{display:flex;justify-content:space-between;font-size:14px;margin-bottom:5px}
+.roomcard .kv .top span:first-child{font-weight:700}
+.roomcard .actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.herophoto{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.herophoto input[type=file]{display:none}
 /* modal */
-#toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:90;max-width:90vw;padding:12px 18px;border-radius:14px;background:var(--green-d);color:#fff;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.3);display:none;text-align:center}
-#toast.err{background:var(--red)}
-#modal{position:fixed;inset:0;height:100dvh;background:rgba(20,30,26,.5);display:none;align-items:flex-end;justify-content:center;z-index:50}
+#toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:90;max-width:90vw;padding:12px 18px;border-radius:16px;background:rgba(11,61,79,.94);backdrop-filter:blur(10px);color:#fff;font-weight:700;box-shadow:0 14px 34px -8px rgba(0,0,0,.45);display:none;text-align:center}
+#toast.err{background:rgba(210,69,59,.96)}
+#modal{position:fixed;inset:0;height:100dvh;background:rgba(8,26,36,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;z-index:50}
 #modal.open{display:flex}
-.sheet{background:#fff;width:100%;max-width:560px;max-height:92vh;max-height:92dvh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:26px 26px 0 0;padding:20px 18px 0}
-@media(min-width:640px){#modal{align-items:center}.sheet{border-radius:20px}}
+.sheet{background:linear-gradient(180deg,#fff,#fafcfd);width:100%;max-width:560px;max-height:92vh;max-height:92dvh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:28px 28px 0 0;padding:22px 18px 0;box-shadow:0 -20px 60px -10px rgba(8,26,36,.4)}
+@media(min-width:640px){#modal{align-items:center}.sheet{border-radius:26px;box-shadow:0 40px 80px -20px rgba(8,26,36,.55)}}
 .sheet h2{margin-bottom:14px}
 .f{margin-bottom:14px}
-.f label{display:block;font-weight:600;margin-bottom:5px;font-size:15px}
+.f label{display:block;font-weight:700;margin-bottom:6px;font-size:14.5px}
 .f .hint{font-size:13px;color:var(--muted);margin-top:4px}
-.f input[type=text],.f input[type=number],.f input[type=date],.f input[type=password],.f select,.f textarea{width:100%;padding:12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
-.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--green);border-color:var(--green)}
+.f input[type=text],.f input[type=number],.f input[type=date],.f input[type=password],.f select,.f textarea{width:100%;padding:12px 13px;border:0;border-radius:13px;font:inherit;background:#f1f5f8;color:var(--ink);box-shadow:inset 0 1px 3px rgba(15,34,48,.14),0 0 0 1px rgba(15,34,48,.06)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;background:#fff;box-shadow:0 0 0 3px rgba(18,147,111,.28),0 0 0 1px var(--green)}
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
-.opts label{margin:0;font-weight:600}
+.opts label{margin:0;font-weight:700}
 .opts input{position:absolute;opacity:0;pointer-events:none}
-.opts span{display:inline-block;border:1.5px solid var(--line);border-radius:99px;padding:8px 14px;font-size:14px;cursor:pointer}
-.opts input:checked+span{background:var(--green-d);border-color:var(--green-d);color:#fff}
-.calc{background:var(--green-l);border-radius:10px;padding:10px 12px;font-weight:700;color:var(--green-d)}
-.donecheck{display:flex;gap:10px;align-items:center;font-weight:700;padding:12px;background:var(--green-l);border-radius:10px}
+.opts span{display:inline-block;background:#f1f5f8;border-radius:99px;padding:9px 15px;font-size:14px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(15,34,48,.08)}
+.opts input:checked+span{background:linear-gradient(180deg,#14566d,#0b3d4f);color:#fff;box-shadow:0 6px 12px -4px rgba(11,61,79,.6)}
+.calc{background:var(--green-l);border-radius:13px;padding:11px 13px;font-weight:800;color:var(--green-d)}
+.donecheck{display:flex;gap:10px;align-items:center;font-weight:700;padding:12px;background:var(--green-l);border-radius:13px}
 .donecheck input{width:22px;height:22px}
-.sheet .btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;position:sticky;bottom:0;background:#fff;padding:12px 0 18px;border-top:1px solid var(--line)}
+.sheet .btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(250,252,253,.85),#fafcfd 30%);padding:14px 0 18px;border-top:1px solid var(--line)}
 .sheet .btns .btn{flex:1}
 /* kalender */
-.cal{border:1.5px solid var(--line);border-radius:14px;padding:10px;background:#fff}
-.cal .ch{display:flex;align-items:center;justify-content:space-between;font-weight:700;text-transform:capitalize}
-.cal .ch button{border:0;background:var(--green-l);color:var(--green-d);width:38px;height:38px;border-radius:50%;font-size:20px;line-height:1}
+.cal{border-radius:16px;padding:12px;background:#f6f9fb;box-shadow:inset 0 0 0 1px rgba(15,34,48,.08)}
+.cal .ch{display:flex;align-items:center;justify-content:space-between;font-weight:800;text-transform:capitalize}
+.cal .ch button{border:0;background:#fff;color:var(--green-d);width:38px;height:38px;border-radius:12px;font-size:20px;line-height:1;box-shadow:var(--shadow-s)}
 .cal .g7{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:8px}
 .cal .wd{font-size:11px;color:var(--muted);text-align:center;font-weight:700;padding-bottom:2px}
-.cd{border:0;background:transparent;aspect-ratio:1;min-height:36px;border-radius:10px;font:inherit;font-weight:600;color:var(--ink);padding:0}
-.cd:hover{background:var(--sand)}
-.cd.today{outline:2px solid var(--clay);outline-offset:-2px}
-.cd.mid{background:var(--green-l);border-radius:4px}
-.cd.st,.cd.en{background:var(--green-d);color:#fff}
-.cal .sum{margin-top:10px;font-weight:700;color:var(--green-d);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.cd{border:0;background:transparent;aspect-ratio:1;min-height:36px;border-radius:11px;font:inherit;font-weight:700;color:var(--ink);padding:0}
+.cd:hover{background:#fff;box-shadow:var(--shadow-s)}
+.cd.today{box-shadow:inset 0 0 0 2px var(--clay)}
+.cd.mid{background:#d6ece6;border-radius:5px}
+.cd.st,.cd.en{background:linear-gradient(180deg,#14566d,#0b3d4f);color:#fff;box-shadow:0 6px 12px -4px rgba(11,61,79,.6)}
+.cal .sum{margin-top:10px;font-weight:800;color:var(--green-d);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .cal .sum .hint{font-weight:500}
 /* gantt */
-.gwrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
-.g-row{display:flex;border-top:1px solid var(--line);min-height:40px}
-.g-lab{flex:0 0 170px;position:sticky;left:0;background:#fff;z-index:2;padding:9px 10px;font-size:14px;border-right:1px solid var(--line);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.g-lab.room{background:var(--green-l);font-weight:700;color:var(--green-d)}
-.g-track{position:relative;flex:0 0 auto;background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--w) - 1px),#efeae1 calc(var(--w) - 1px),#efeae1 var(--w))}
-.g-track.room{background-color:var(--green-l)}
-.g-head .g-lab{font-weight:700}
-.g-m{position:absolute;top:0;height:30px;border-left:1px solid var(--line);padding:7px 6px;font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:clip}
+.gwrap{overflow-x:auto;background:#fff;border:1px solid rgba(255,255,255,.9);border-radius:var(--r);box-shadow:var(--shadow)}
+.g-row{display:flex;border-top:1px solid var(--line);min-height:42px}
+.g-lab{flex:0 0 170px;position:sticky;left:0;background:#fff;z-index:2;padding:10px 12px;font-size:14px;border-right:1px solid var(--line);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g-lab.room{background:#eaf2f6;font-weight:800;color:var(--green-d)}
+.g-track{position:relative;flex:0 0 auto;background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--w) - 1px),#eef2f5 calc(var(--w) - 1px),#eef2f5 var(--w))}
+.g-track.room{background-color:#eaf2f6}
+.g-head .g-lab{font-weight:800}
+.g-m{position:absolute;top:0;height:30px;border-left:1px solid var(--line);padding:7px 6px;font-size:13px;font-weight:800;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:clip}
 .g-w{position:absolute;top:30px;bottom:0;text-align:center;font-size:11px;color:var(--muted);padding-top:6px}
-.g-bar{position:absolute;top:8px;height:24px;border-radius:7px;color:#fff;font-size:12px;font-weight:700;padding:3px 8px;overflow:hidden;white-space:nowrap;cursor:pointer;min-width:16px}
-.g-bar.todo{background:var(--blue)} .g-bar.doing{background:var(--amber);color:#4a3200} .g-bar.late{background:var(--red)} .g-bar.ok{background:var(--green)}
+.g-bar{position:absolute;top:8px;height:26px;border-radius:9px;color:#fff;font-size:12px;font-weight:700;padding:4px 9px;overflow:hidden;white-space:nowrap;cursor:pointer;min-width:16px;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 5px 10px -3px rgba(15,34,48,.4)}
+.g-bar.todo{background:linear-gradient(180deg,#5aa0dc,#2f72b3)} .g-bar.doing{background:linear-gradient(180deg,#f7c158,#e39a10);color:#4a3200} .g-bar.late{background:linear-gradient(180deg,#f0736a,#c53a30)} .g-bar.ok{background:linear-gradient(180deg,#2cc298,#0e8a68)}
 .today{position:absolute;top:0;bottom:0;width:2px;background:var(--clay);z-index:1}
-.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:10px 0}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:12px 0}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:5px}
 /* tables */
 table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th,td{padding:10px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
 th:first-child,td:first-child{text-align:left;white-space:normal}
-th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
-tfoot td{font-weight:700;border-top:2px solid var(--ink)}
+th{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+tfoot td{font-weight:800;border-top:2px solid var(--ink)}
 .scrollx{overflow-x:auto}
 .legendlist{display:grid;gap:6px;font-size:14px}
 .legendlist div{display:flex;align-items:center;gap:8px}
@@ -160,14 +178,14 @@ tfoot td{font-weight:700;border-top:2px solid var(--ink)}
 .legendlist b{margin-left:auto;padding-left:10px}
 .hbar{display:grid;grid-template-columns:120px 1fr 100px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
 .hbar .bar{height:14px}
-.rep h2{margin:22px 0 10px;font-size:20px}
+.rep h2{margin:24px 0 12px;font-size:20px}
 .rep ul{margin:6px 0 0;padding-left:20px}
-.login{max-width:380px;margin:60px auto;text-align:center}
-.fab{position:fixed;right:16px;bottom:16px;z-index:15;box-shadow:0 8px 22px rgba(23,73,90,.35);border-radius:99px;padding:15px 24px;background:var(--clay)}
-.fab:hover{background:#d26a4f}
+.login{max-width:380px;margin:70px auto;text-align:center}
+.fab{position:fixed;right:16px;bottom:16px;z-index:15;border-radius:18px;padding:15px 24px;background:linear-gradient(180deg,#ff8f70,#f2603a);box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 16px 30px -8px rgba(242,96,58,.7)}
+.fab:hover{filter:brightness(1.06)}
 @media print{
   .hero,nav.tabs,.noprint,.fab,.add,#modal{display:none!important}
-  body{background:#fff} main{padding:0} .card,.section{break-inside:avoid;border-color:#ccc}
+  body{background:#fff} main{padding:0} .card,.section{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
   @page{margin:12mm}
 }
 </style>
@@ -214,7 +232,7 @@ const isoWeek = ms => { const d = new Date(ms); d.setUTCDate(d.getUTCDate() + 4 
 const monday = ms => { const d = new Date(ms); return ms - ((d.getUTCDay() + 6) % 7) * DAY; };
 const pct = (a, b) => b > 0 ? Math.round(a / b * 100) : 0;
 
-const RENO_TYPES = ['Material', 'Hantverkare', 'Egen insats', 'Övrigt'];
+const RENO_TYPES = ['Material', 'Hantverkare', 'Övrigt'];
 const INRED_TYPES = ['Möbel', 'Belysning', 'Textil & mattor', 'Dekoration', 'Övrigt'];
 const UNITS = ['st', 'm', 'm²', 'm³', 'förp', 'påse', 'burk', 'rulle', 'patron', 'liter', 'kg', 'timme'];
 /* Priser från fakturor från Anders Trä (senaste pris per artikel, omräknat till inkl. moms) */
@@ -236,24 +254,28 @@ const SEED_PRICES = [
 },
 {
 "name": "OSB 3 11×2500×1200 (3 m²)",
+"cover": 3,
 "unit": "st",
 "price": 239.0,
 "source": "Anders Trä, faktura 2026-02-11 (exkl. moms 191,2 kr)"
 },
 {
 "name": "Gips GEE13 2400×900 lättvikt",
+"cover": 2.16,
 "unit": "st",
 "price": 113.4,
 "source": "Anders Trä, faktura 2025-12-10 (exkl. moms 90,72 kr)"
 },
 {
 "name": "Hobbyskiva furu 18×2400×300",
+"cover": 0.72,
 "unit": "st",
 "price": 306.0,
 "source": "Anders Trä, faktura 2026-02-11 (exkl. moms 244,8 kr)"
 },
 {
 "name": "Hobbyskiva furu 18×2400×400",
+"cover": 0.96,
 "unit": "st",
 "price": 436.05,
 "source": "Anders Trä, faktura 2026-02-11 (exkl. moms 348,84 kr)"
@@ -553,8 +575,19 @@ async function initShared() {
 }
 
 /* ---------- Beräkningar ---------- */
+const COVER_SEED = {};
+SEED_PRICES.forEach(p => { if (p.cover) COVER_SEED[p.name] = p.cover; });
+const coverDone = new Set();
+function ensureCovers() {   // lägger en gång in 'täcker m²' på redan importerade standardartiklar
+  S.prices.forEach(p => { if (p.cover === undefined && COVER_SEED[p.name] && !coverDone.has(p.id)) { coverDone.add(p.id); Store.save('prices', p.id, {cover: COVER_SEED[p.name]}); } });
+}
 const priceOf = id => S.prices.find(p => p.id === id);
-const estOf = it => { if (it.priceId) { const p = priceOf(it.priceId); if (p) return num(p.price) * num(it.qty); } return num(it.est); };
+const effQty = it => {
+  const p = priceOf(it.priceId), c = p ? num(p.cover) : 0, a = num(it.area);
+  if (p && c > 0 && a > 0) return Math.ceil(a * (1 + num(it.spill) / 100) / c - 1e-9);   // yta → antal, avrundat uppåt
+  return num(it.qty);
+};
+const estOf = it => { if (it.priceId) { const p = priceOf(it.priceId); if (p) return num(p.price) * effQty(it); } return num(it.est); };
 const hasActual = it => it.actual !== null && it.actual !== undefined && it.actual !== '';
 const fcOf = it => hasActual(it) ? num(it.actual) : estOf(it);
 const rooms = () => [...S.rooms].sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -577,8 +610,80 @@ const diffTxt = (budget, fc) => {
 };
 
 /* ---------- Rendering ---------- */
-const LOGO = '<svg width="48" height="48" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="17" r="9" fill="#f2b84b"/><path d="M2 30c5-4 8-4 13 0s8 4 13 0 8-4 14 0" stroke="#17495a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M2 38c5-4 8-4 13 0s8 4 13 0 8-4 14 0" stroke="#4a86a8" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
-const TABS = [['oversikt', '🏠 Översikt'], ['reno', '🔨 Renovering'], ['inred', '🛋️ Inredning'], ['tid', '📅 Tidsplan'], ['pris', '🧾 Prislista'], ['rapport', '📊 Rapport'], ['hjalp', '❓ Hjälp']];
+
+/* ---------- Ikoner & hero ---------- */
+const ICONS = {
+  home: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+  hammer: '<path d="M14 6l4 4"/><path d="M12.5 7.5L4 16l4 4 8.5-8.5"/><path d="M15 3l6 6-2 2-6-6z"/>',
+  sofa: '<path d="M5 11V8a3 3 0 013-3h8a3 3 0 013 3v3"/><path d="M3 12a2 2 0 014 0v3h10v-3a2 2 0 014 0v6H3z"/><path d="M5 18v2M19 18v2"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
+  receipt: '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>',
+  chart: '<path d="M5 20V11M12 20V5M19 20v-6"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.8.6-1.5 1-1.5 2"/><path d="M12 17h.01"/>',
+  door: '<path d="M6 21V4a1 1 0 011-1h10a1 1 0 011 1v17"/><path d="M3 21h18"/><path d="M14 12h.01"/>',
+  bed: '<path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 00-3-3h-7v5"/><circle cx="7" cy="11" r="1.5"/>',
+  bath: '<path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M6 12V6a2 2 0 013.5-1.3"/><path d="M7 19l-1 2M17 19l1 2"/>',
+  utensils: '<path d="M7 3v8M4 3v5a3 3 0 006 0V3M7 11v10"/><path d="M17 21V3c-2.5 1.5-4 4.5-4 8h4"/>',
+  building: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',
+  cart: '<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h3l2.5 11h10l2-8H7"/>',
+  download: '<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',
+  printer: '<path d="M7 9V3h10v6M7 17H4v-6a2 2 0 012-2h12a2 2 0 012 2v6h-3"/><rect x="7" y="14" width="10" height="7" rx="1"/>',
+  pencil: '<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>',
+  camera: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+  alert: '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+  circleCheck: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>'
+};
+const ic = (n, z = 18) => `<svg class="ic" width="${z}" height="${z}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n] || ''}</svg>`;
+function roomIconName(r) {
+  const n = String((r && r.name) || '').toLowerCase();
+  if (/kök/.test(n)) return 'utensils';
+  if (/vardag/.test(n)) return 'sofa';
+  if (/hall/.test(n)) return 'door';
+  if (/bad|tvätt/.test(n)) return 'bath';
+  if (/lägenhet/.test(n)) return 'building';
+  if (/rum/.test(n)) return 'bed';
+  return 'home';
+}
+const roomIco = (r, z = 18) => `<span class="ico">${ic(roomIconName(r), z)}</span>`;
+const LOGO = '<svg class="logo" width="54" height="54" viewBox="0 0 54 54" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb4c9"/><stop offset="1" stop-color="#0b3d4f"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#cfe7ee"/></linearGradient></defs><rect x="2" y="2" width="50" height="50" rx="16" fill="url(#lg1)"/><rect x="2.5" y="2.5" width="49" height="49" rx="15.5" fill="none" stroke="#fff" stroke-opacity=".35"/><circle cx="37" cy="17" r="5" fill="#ffd27a"/><path d="M12 30l15-12 15 12v13H12z" fill="url(#lg2)"/><path d="M23 43V34h8v9" fill="#0b3d4f" fill-opacity=".85"/></svg>';
+const HERO_SVG = '<svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>' +
+  '<linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d7da3"/><stop offset=".45" stop-color="#9fc9da"/><stop offset=".78" stop-color="#f3dcc0"/><stop offset="1" stop-color="#f7c9a0"/></linearGradient>' +
+  '<linearGradient id="hSea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9b998"/><stop offset=".18" stop-color="#7fb0c4"/><stop offset="1" stop-color="#1c5f78"/></linearGradient>' +
+  '<radialGradient id="hSun" cx=".72" cy=".62" r=".5"><stop offset="0" stop-color="#fff6dc" stop-opacity=".95"/><stop offset=".25" stop-color="#ffd9a0" stop-opacity=".55"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient>' +
+  '<filter id="hBlur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="14"/></filter><filter id="hSoft"><feGaussianBlur stdDeviation="1.4"/></filter>' +
+  '<filter id="hWater" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.004 0.22" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -.72"/></filter>' +
+  '<filter id="hGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .55 0"/></filter>' +
+  '<linearGradient id="hPine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f4a47"/><stop offset="1" stop-color="#0d2b2e"/></linearGradient></defs>' +
+  '<rect width="1200" height="400" fill="url(#hSky)"/><rect width="1200" height="400" fill="url(#hSun)"/>' +
+  '<g filter="url(#hBlur)" opacity=".75"><ellipse cx="250" cy="95" rx="190" ry="20" fill="#fff"/><ellipse cx="520" cy="60" rx="150" ry="14" fill="#fff"/><ellipse cx="930" cy="110" rx="210" ry="22" fill="#fff" opacity=".8"/><ellipse cx="1080" cy="52" rx="120" ry="12" fill="#fff"/></g>' +
+  '<rect y="232" width="1200" height="168" fill="url(#hSea)"/><rect y="232" width="1200" height="168" filter="url(#hWater)" opacity=".5"/>' +
+  '<path d="M700 236h200l-30 164h-140z" fill="#fff3d6" opacity=".35" filter="url(#hBlur)"/>' +
+  '<g filter="url(#hSoft)"><path d="M0 240c60-14 120-20 190-12 50 6 90 4 140 10 20 3 20 7 0 8H0z" fill="#6f8f9a" opacity=".55"/>' +
+  '<path d="M520 238c40-9 80-12 120-8 40 3 70 2 110 6 16 2 16 5 0 6H520z" fill="#7d9aa3" opacity=".5"/>' +
+  '<path d="M0 250c80-18 150-26 230-18 70 7 110 4 170 12 30 4 30 9 0 10H0z" fill="#2e5a5e"/>' +
+  '<g fill="url(#hPine)"><path d="M70 250l9-44 9 44zM92 250l8-36 8 36zM48 250l7-30 7 30zM118 250l6-26 6 26z"/></g>' +
+  '<path d="M820 244c60-8 120-10 170-6 70 6 130 3 210 10v6H820z" fill="#375f63"/></g>' +
+  '<path d="M0 400V318c120 22 230 18 340 36 90 15 170 34 260 46z" fill="#c9a97f" opacity=".0"/>' +
+  '<rect width="1200" height="400" filter="url(#hGrain)" opacity=".35" style="mix-blend-mode:overlay"/></svg>';
+function heroHtml() {
+  return S.settings.hero ? `<img class="photo" alt="" src="${esc(S.settings.hero)}">` : `<div class="scene">${HERO_SVG}</div>`;
+}
+async function setHeroFile(file) {
+  if (!file) return;
+  const img = new Image(), url = URL.createObjectURL(file);
+  await new Promise((ok, no) => { img.onload = ok; img.onerror = () => no(new Error('Kunde inte läsa bilden')); img.src = url; });
+  const maxW = 1500, k = Math.min(1, maxW / img.width), c = document.createElement('canvas');
+  c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+  let q = .8, d = c.toDataURL('image/jpeg', q);
+  while (d.length > 700000 && q > .3) { q -= .1; d = c.toDataURL('image/jpeg', q); }
+  await Store.save('settings', 'main', {hero: d}); toast('Bilden är sparad');
+}
+
+const TABS = [['oversikt', 'home', 'Översikt'], ['reno', 'hammer', 'Renovering'], ['inred', 'sofa', 'Inredning'], ['tid', 'calendar', 'Tidsplan'], ['pris', 'receipt', 'Prislista'], ['rapport', 'chart', 'Rapport'], ['hjalp', 'help', 'Hjälp']];
 
 function render() {
   const app = $('#app');
@@ -591,12 +696,12 @@ function render() {
     : S.noStorage ? '<span class="pill warn">● Förhandsvisning – sparas inte</span>' : '<span class="pill warn">● Bara på den här enheten</span>';
   const scrollX = $('.gwrap')?.scrollLeft;
   app.innerHTML = `
-  <header class="hero"><div class="wrap"><div class="brand">${LOGO}<div><h1>${esc(title)}</h1><small>Loftahammar · plan &amp; budget</small></div></div>${pill}</div>
-    <svg class="wave" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20c100 18 200 18 300 0s200-18 300 0 200 18 300 0 200-18 300 0v20H0z" fill="#f8f4ec"/></svg></header>
-  <nav class="tabs"><div class="in">${TABS.map(([k, l]) => `<button data-act="tab" data-v="${k}" class="${S.tab === k ? 'on' : ''}">${l}</button>`).join('')}</div></nav>
+  <header class="hero">${heroHtml()}<div class="wrap"><div class="top">${pill}</div><div class="brand">${LOGO}<div><h1>${esc(title)}</h1><small>Loftahammar · plan &amp; budget</small></div></div></div></header>
+  <nav class="tabs"><div class="in">${TABS.map(([k, i, l]) => `<button data-act="tab" data-v="${k}" class="${S.tab === k ? 'on' : ''}">${ic(i, 18)}<span>${l}</span></button>`).join('')}</div></nav>
   <main class="wrap">${view()}</main>
-  ${(S.tab === 'reno' || S.tab === 'inred') && S.rooms.length ? `<button class="btn fab noprint" data-act="new" data-kind="${S.tab}">＋ Lägg till</button>` : ''}`;
+  ${(S.tab === 'reno' || S.tab === 'inred') && S.rooms.length ? `<button class="btn fab noprint" data-act="new" data-kind="${S.tab}">+ Lägg till</button>` : ''}`;
   if (scrollX) { const g = $('.gwrap'); if (g) g.scrollLeft = scrollX; }
+  queueMicrotask(ensureCovers);
 }
 
 function view() {
@@ -618,10 +723,10 @@ function loginHtml() {
 }
 
 function stepsCard() {
-  return `<div class="card"><h2>Välkomna till Villa Solviken ☀️</h2>
+  return `<div class="card"><h2>Välkomna till Villa Solviken</h2>
   <div class="steps">
     <div class="s"><div class="n">1</div><div><b>Lägg in rummen</b><br><span class="sub" style="margin:0">Ett klick lägger in era rum. Sätt sedan en budget per rum.</span></div></div>
-    <div class="s"><div class="n">2</div><div><b>Skriv in vad som ska göras</b><br><span class="sub" style="margin:0">Gå till <i>Renovering</i> och tryck <b>＋ Lägg till</b>. Skriv vad, vem som gör det och vad det kostar.</span></div></div>
+    <div class="s"><div class="n">2</div><div><b>Skriv in vad som ska göras</b><br><span class="sub" style="margin:0">Gå till <i>Renovering</i> och tryck <b>+ Lägg till</b>. Skriv vad, vem som gör det och vad det kostar.</span></div></div>
     <div class="s"><div class="n">3</div><div><b>Bocka av när det är klart</b><br><span class="sub" style="margin:0">Tryck på rutan till vänster om en sak. Siffrorna räknas ut automatiskt.</span></div></div>
     <div class="s"><div class="n">4</div><div><b>Ta ut en rapport</b><br><span class="sub" style="margin:0">Fliken <i>Rapport</i> visar vad pengarna går till och vad som är kvar att göra.</span></div></div>
   </div></div>`;
@@ -645,7 +750,7 @@ function viewOverview() {
     <div class="card stat"><div class="lbl">Betalt hittills</div><div class="val">${kr(T.actual)}</div><div class="note">${pct(T.actual, T.fc)}% av prognosen</div></div>
     <div class="card stat"><div class="lbl">Klart</div><div class="val">${T.done} av ${T.n}</div><div class="bar" style="margin-top:8px"><i style="width:${pct(T.done, T.n)}%"></i></div></div>
   </div>
-  <div class="row spread" style="margin:22px 0 12px"><h2>Rum för rum</h2><button class="btn ghost small" data-act="roomNew">＋ Nytt rum</button></div>
+  <div class="row spread" style="margin:22px 0 12px"><h2>Rum för rum</h2><button class="btn ghost small" data-act="roomNew">+ Nytt rum</button></div>
   <div class="grid g2">${rooms().map(roomCard).join('')}</div>`;
 }
 
@@ -657,10 +762,10 @@ function budgetBar(label, st) {
 }
 function roomCard(r) {
   const R = stats('reno', r.id), I = stats('inred', r.id), T = sumStats(R, I);
-  return `<div class="card roomcard"><div class="row spread"><h3>${esc(r.emoji || '🏠')} ${esc(r.name)}</h3><button class="btn ghost small" data-act="roomEdit" data-id="${r.id}">✏️ Budget</button></div>
+  return `<div class="card roomcard"><div class="row spread"><h3>${roomIco(r)}${esc(r.name)}</h3><button class="btn ghost small" data-act="roomEdit" data-id="${r.id}">${ic('pencil', 15)} Budget</button></div>
     ${budgetBar('Renovering', R)}${budgetBar('Inredning', I)}
     <div class="kv"><div class="top"><span>Klart</span><span>${T.done} av ${T.n}</span></div><div class="bar"><i style="width:${pct(T.done, T.n)}%"></i></div></div>
-    <div class="actions"><button class="btn ghost small" data-act="new" data-kind="reno" data-room="${r.id}">＋ Renovering</button><button class="btn ghost small" data-act="new" data-kind="inred" data-room="${r.id}">＋ Inredning</button></div></div>`;
+    <div class="actions"><button class="btn ghost small" data-act="new" data-kind="reno" data-room="${r.id}">+ Renovering</button><button class="btn ghost small" data-act="new" data-kind="inred" data-room="${r.id}">+ Inredning</button></div></div>`;
 }
 
 function viewList(kind) {
@@ -675,21 +780,21 @@ function viewList(kind) {
     if (S.filter === 'ej klara') its = its.filter(i => !i.done);
     if (S.filter === 'klara') its = its.filter(i => i.done);
     const key = kind + r.id, closed = S.collapsed[key];
-    return `<div class="section"><div class="roomhead" data-act="collapse" data-v="${key}"><span>${esc(r.emoji || '🏠')}</span><span class="nm">${esc(r.name)}</span>
+    return `<div class="section"><div class="roomhead" data-act="collapse" data-v="${key}">${roomIco(r)}<span class="nm">${esc(r.name)}</span>
       <span class="tot">${kr(st.fc)}${st.budget ? ' / ' + kr(st.budget) : ''}<br><small>${st.done} av ${st.n} klara</small></span><span>${closed ? '▸' : '▾'}</span></div>
-      ${closed ? '' : its.map(i => itemRow(i, isReno)).join('') + `<button class="add" data-act="new" data-kind="${kind}" data-room="${r.id}">＋ Lägg till i ${esc(r.name)}</button>`}</div>`;
+      ${closed ? '' : its.map(i => itemRow(i, isReno)).join('') + `<button class="add" data-act="new" data-kind="${kind}" data-room="${r.id}">+ Lägg till i ${esc(r.name)}</button>`}</div>`;
   }).join('');
   return head + `<div class="chips">${chips}</div>` + sections;
 }
 function itemRow(i, isReno) {
-  const dates = isReno && i.start && i.end ? `📅 ${fmtD(pd(i.start))}–${fmtD(pd(i.end))}` : '';
-  const price = i.priceId && priceOf(i.priceId) ? `${esc(i.qty)} ${esc(priceOf(i.priceId).unit)} ${esc(priceOf(i.priceId).name)}` : '';
+  const dates = isReno && i.start && i.end ? `${ic('calendar', 13)} ${fmtD(pd(i.start))}–${fmtD(pd(i.end))}` : '';
+  const price = i.priceId && priceOf(i.priceId) ? `${esc(effQty(i))} ${esc(priceOf(i.priceId).unit)} ${esc(priceOf(i.priceId).name)}${num(i.area) > 0 && num(priceOf(i.priceId).cover) > 0 ? ` (${esc(String(i.area).replace('.', ','))} m² + ${esc(i.spill || 0)} % spill)` : ''}` : '';
   const noPrice = !hasActual(i) && i.priceId && priceOf(i.priceId) && !num(priceOf(i.priceId).price);
   const amt = hasActual(i) ? `${kr(i.actual)}<small>betalt</small>` : noPrice ? '<span class="bad">Pris saknas</span><small>fyll i i prislistan</small>' : `${kr(estOf(i))}<small>uppskattat</small>`;
   const prio = !isReno && i.prio ? `<span class="tag ${i.prio === 'Måste' ? 'warn' : ''}">${esc(i.prio)}</span>` : '';
   return `<div class="item ${i.done ? 'isdone' : ''}" data-act="edit" data-id="${i.id}">
-    <button class="chk ${i.done ? 'on' : ''}" data-act="toggle" data-id="${i.id}" aria-label="Klart">${i.done ? '✓' : ''}</button>
-    <div class="t"><b>${esc(i.title)}</b><div class="meta"><span class="tag">${esc(i.type || '')}</span>${prio}${i.who ? `<span>👤 ${esc(i.who)}</span>` : ''}${dates ? `<span>${dates}</span>` : ''}${price ? `<span>${price}</span>` : ''}${i.store ? `<span>🛒 ${esc(i.store)}</span>` : ''}</div></div>
+    <button class="chk ${i.done ? 'on' : ''}" data-act="toggle" data-id="${i.id}" aria-label="Klart">${i.done ? ic('check', 18) : ''}</button>
+    <div class="t"><b>${esc(i.title)}</b><div class="meta"><span class="tag">${esc(i.type || '')}</span>${prio}${i.who ? `<span>${ic('user', 13)} ${esc(i.who)}</span>` : ''}${dates ? `<span>${dates}</span>` : ''}${price ? `<span>${price}</span>` : ''}${i.store ? `<span>${ic('cart', 13)} ${esc(i.store)}</span>` : ''}</div></div>
     <div class="amt">${amt}</div></div>`;
 }
 
@@ -720,7 +825,7 @@ function viewGantt() {
   rooms().forEach(r => {
     const its = dated.filter(i => i.room === r.id).sort((a, b) => pd(a.start) - pd(b.start));
     if (!its.length) return;
-    rows += `<div class="g-row"><div class="g-lab room">${esc(r.emoji || '')} ${esc(r.name)}</div><div class="g-track room" style="--w:${W}px;width:${total}px;background-image:none"></div></div>`;
+    rows += `<div class="g-row"><div class="g-lab room">${esc(r.name)}</div><div class="g-track room" style="--w:${W}px;width:${total}px;background-image:none"></div></div>`;
     its.forEach(i => {
       const s = pd(i.start), e = pd(i.end);
       const cls = i.done ? 'ok' : e < TODAY ? 'late' : s <= TODAY ? 'doing' : 'todo';
@@ -729,7 +834,7 @@ function viewGantt() {
       const left = x(s), width = Math.max(16, x(e + DAY) - left);
       rows += `<div class="g-row"><div class="g-lab" title="${esc(i.title)}">${i.done ? '✓ ' : ''}${esc(i.title)}</div>
         <div class="g-track" style="--w:${W}px;width:${total}px">${todayLine}
-        <div class="g-bar ${cls}" data-act="edit" data-id="${i.id}" style="left:${left}px;width:${width}px" title="${esc(i.title)}: ${fmtD(s)}–${fmtD(e)}${warn ? ' – OBS: startar före att ' + esc(dep.title) + ' är klar' : ''}">${warn ? '⚠ ' : ''}${fmtD(s)}–${fmtD(e)}</div></div></div>`;
+        <div class="g-bar ${cls}" data-act="edit" data-id="${i.id}" style="left:${left}px;width:${width}px" title="${esc(i.title)}: ${fmtD(s)}–${fmtD(e)}${warn ? ' – OBS: startar före att ' + esc(dep.title) + ' är klar' : ''}">${warn ? ic('alert', 12) + ' ' : ''}${fmtD(s)}–${fmtD(e)}</div></div></div>`;
     });
   });
   return head + `<div class="legend"><span><i style="background:var(--blue)"></i>Kommer</span><span><i style="background:var(--amber)"></i>Pågår nu</span><span><i style="background:var(--green)"></i>Klart</span><span><i style="background:var(--red)"></i>Försenat</span><span><i style="background:var(--clay)"></i>Idag</span><span>⚠ = startar före att något som måste vara klart först är klart</span></div>
@@ -744,10 +849,10 @@ function undatedList(und) {
 /* ---------- Prislista ---------- */
 function viewPrices() {
   const ps = [...S.prices].sort((a, b) => (a.name || '').localeCompare(b.name || '', 'sv'));
-  return `<div class="row spread wrapx"><h2>Prislista – material &amp; arbete</h2><div class="row wrapx"><button class="btn ghost" data-act="priceNewHour">＋ Ny hantverkare (timarvode)</button><button class="btn" data-act="priceNew">＋ Ny artikel</button></div></div>
-  <p class="sub">Här ligger priserna på det ni handlar, till exempel från Anders Trä, samt timarvodet för snickarna. Ange alltid pris <b>inklusive moms</b>. När ni lägger in en materialsak väljer ni artikel och antal, så räknas kostnaden ut. Ändrar ni priset här uppdateras alla poster som använder den.</p>
+  return `<div class="row spread wrapx"><h2>Prislista – material &amp; arbete</h2><div class="row wrapx"><button class="btn ghost" data-act="priceNewHour">+ Ny hantverkare (timarvode)</button><button class="btn" data-act="priceNew">+ Ny artikel</button></div></div>
+  <p class="sub">Här ligger priserna på det ni handlar, till exempel från Anders Trä, samt timarvodet för snickarna. Ange alltid pris <b>inklusive moms</b>. När ni lägger in en materialsak väljer ni artikel och antal, så räknas kostnaden ut. Har en artikel ”Täcker m²” kan ni skriva in en yta när ni lägger in en materialsak, så räknas antal och kostnad ut. Ändrar ni priset här uppdateras alla poster som använder den.</p>
   ${ps.length ? `<div class="card scrollx"><table><thead><tr><th>Artikel</th><th>Enhet</th><th>Pris per enhet</th><th>Källa</th></tr></thead><tbody>
-  ${ps.map(p => `<tr data-act="priceEdit" data-id="${p.id}" style="cursor:pointer"><td><b>${esc(p.name)}</b></td><td>${esc(p.unit)}</td><td>${num(p.price) ? krP(num(p.price)) : '<span class="tag warn">Fyll i pris</span>'}</td><td style="white-space:normal;min-width:200px;text-align:left;color:var(--muted)">${esc(p.source || '')}</td></tr>`).join('')}</tbody></table></div>`
+  ${ps.map(p => `<tr data-act="priceEdit" data-id="${p.id}" style="cursor:pointer"><td><b>${esc(p.name)}</b>${num(p.cover) > 0 ? `<br><small style="color:var(--muted)">täcker ${String(num(p.cover)).replace('.', ',')} m² per ${esc(p.unit)}</small>` : ''}</td><td>${esc(p.unit)}</td><td>${num(p.price) ? krP(num(p.price)) : '<span class="tag warn">Fyll i pris</span>'}</td><td style="white-space:normal;min-width:200px;text-align:left;color:var(--muted)">${esc(p.source || '')}</td></tr>`).join('')}</tbody></table></div>`
   : `<div class="card empty"><h2>Prislistan är tom</h2><p class="sub">Vi har läst ut ${SEED_PRICES.filter(p => p.unit !== 'timme').length} artiklar ur era fakturor från Anders Trä (senaste pris, omräknat till inklusive moms) och lagt till timarvode för snickare, elektriker och VVS (de två sista saknar pris tills ni fyller i det).</p><button class="btn" data-act="seedPrices">Lägg in priser från Anders Trä</button><p style="margin:14px 0 0"><button class="btn ghost small" data-act="priceNew">Eller lägg till en artikel själv</button></p></div>`}`;
 }
 
@@ -760,7 +865,7 @@ function viewReport() {
   const rs = rooms().map((r, idx) => ({r, idx, R: stats('reno', r.id), I: stats('inred', r.id)})).map(o => ({...o, T: sumStats(o.R, o.I)}));
   const dc = v => `<span class="${v < 0 ? 'bad' : 'good'}">${v < 0 ? '−' : '+'}${kr(Math.abs(v))}</span>`;
   const tbl = `<table><thead><tr><th>Rum</th><th>Reno budget</th><th>Reno prognos</th><th>Avvikelse</th><th>Inred budget</th><th>Inred prognos</th><th>Avvikelse</th><th>Klart</th></tr></thead><tbody>
-  ${rs.map(o => `<tr><td>${esc(o.r.emoji || '')} ${esc(o.r.name)}</td><td>${kr(o.R.budget)}</td><td>${kr(o.R.fc)}</td><td>${o.R.budget || o.R.fc ? dc(o.R.budget - o.R.fc) : ''}</td><td>${kr(o.I.budget)}</td><td>${kr(o.I.fc)}</td><td>${o.I.budget || o.I.fc ? dc(o.I.budget - o.I.fc) : ''}</td><td>${o.T.done}/${o.T.n}</td></tr>`).join('')}</tbody>
+  ${rs.map(o => `<tr><td>${esc(o.r.name)}</td><td>${kr(o.R.budget)}</td><td>${kr(o.R.fc)}</td><td>${o.R.budget || o.R.fc ? dc(o.R.budget - o.R.fc) : ''}</td><td>${kr(o.I.budget)}</td><td>${kr(o.I.fc)}</td><td>${o.I.budget || o.I.fc ? dc(o.I.budget - o.I.fc) : ''}</td><td>${o.T.done}/${o.T.n}</td></tr>`).join('')}</tbody>
   <tfoot><tr><td>Totalt</td><td>${kr(R.budget)}</td><td>${kr(R.fc)}</td><td>${dc(R.budget - R.fc)}</td><td>${kr(I.budget)}</td><td>${kr(I.fc)}</td><td>${dc(I.budget - I.fc)}</td><td>${T.done}/${T.n}</td></tr></tfoot></table>`;
   // donut per rum
   const parts = rs.filter(o => o.T.fc > 0);
@@ -790,7 +895,7 @@ function viewReport() {
     ${over.map(o => `<li>${esc(o.r.name)} ligger över budget${o.R.budget && o.R.fc > o.R.budget ? ` på renovering (${kr(o.R.fc - o.R.budget)} över)` : ''}${o.I.budget && o.I.fc > o.I.budget ? ` på inredning (${kr(o.I.fc - o.I.budget)} över)` : ''}</li>`).join('')}
     ${late.map(i => `<li>Försenat: ${esc(i.title)} (skulle vara klart ${fmtD(pd(i.end))})</li>`).join('')}</ul></div>` : '';
   const d = T.budget - T.fc;
-  return `<div class="rep"><div class="row spread wrapx noprint"><h2 style="margin:0">Rapport</h2><div class="row"><button class="btn ghost" data-act="csv">⬇ Excel (CSV)</button><button class="btn" data-act="print">🖨 Skriv ut / spara PDF</button></div></div>
+  return `<div class="rep"><div class="row spread wrapx noprint"><h2 style="margin:0">Rapport</h2><div class="row"><button class="btn ghost" data-act="csv">${ic('download', 16)} Excel (CSV)</button><button class="btn" data-act="print">${ic('printer', 16)} Skriv ut / spara PDF</button></div></div>
   <h1 style="margin:18px 0 2px">${esc(S.settings.title || 'Villa Solviken')}</h1><div class="sub" style="margin-top:0">Statusrapport ${date}</div>
   <div class="grid g4" style="margin-bottom:12px">
     <div class="card stat"><div class="lbl">Budget</div><div class="val">${kr(T.budget)}</div></div>
@@ -801,7 +906,7 @@ function viewReport() {
   <h2>Vart går pengarna?</h2><div class="grid g2"><div class="card"><b>Per rum</b><div style="margin-top:10px">${donut}</div></div><div class="card"><b>Per typ av kostnad</b><div style="margin-top:10px">${typeBars}</div></div></div>
   <h2>Budget mot prognos per rum</h2><div class="card scrollx">${tbl}</div>
   <p class="sub" style="margin-top:8px">Prognos = faktisk kostnad där den är inlagd, annars uppskattad kostnad. Avvikelse: grönt = under budget, rött = över.</p>
-  <h2>Kvar att göra (${open.length})</h2><div class="card">${open.length ? `<ul>${open.map(li).join('')}</ul>` : 'Allt är klart! 🎉'}</div>
+  <h2>Kvar att göra (${open.length})</h2><div class="card">${open.length ? `<ul>${open.map(li).join('')}</ul>` : 'Allt är klart!'}</div>
   <h2>Klart (${doneL.length})</h2><div class="card">${doneL.length ? `<ul>${doneL.map(li).join('')}</ul>` : 'Inget avbockat ännu.'}</div></div>`;
 }
 
@@ -809,8 +914,8 @@ function viewReport() {
 function viewHelp() {
   return `<h2>Hjälp</h2><p class="sub">Kort och enkelt. Allt sparas automatiskt.</p>
   <div class="card"><h3>Så fyller ni i</h3><div class="steps">
-    <div class="s"><div class="n">1</div><div><b>Rum och budget</b><br>På <i>Översikt</i>: tryck <b>✏️ Budget</b> på ett rum och skriv hur mycket ni vill lägga på renovering och inredning där.</div></div>
-    <div class="s"><div class="n">2</div><div><b>Saker som ska göras</b><br>På <i>Renovering</i>: tryck <b>＋ Lägg till</b>. Välj rum, skriv vad som ska göras och vad det beräknas kosta. Lägg gärna in start- och slutdatum, så syns det i tidsplanen.</div></div>
+    <div class="s"><div class="n">1</div><div><b>Rum och budget</b><br>På <i>Översikt</i>: tryck <b>Budget</b> på ett rum och skriv hur mycket ni vill lägga på renovering och inredning där.</div></div>
+    <div class="s"><div class="n">2</div><div><b>Saker som ska göras</b><br>På <i>Renovering</i>: tryck <b>+ Lägg till</b>. Välj rum, skriv vad som ska göras och vad det beräknas kosta. Lägg gärna in start- och slutdatum, så syns det i tidsplanen.</div></div>
     <div class="s"><div class="n">3</div><div><b>Material</b><br>Välj <i>Material</i> och sedan en artikel ur prislistan plus antal, så räknas kostnaden ut åt er.</div></div>
     <div class="s"><div class="n">4</div><div><b>Inredning</b><br>På <i>Inredning</i> lägger ni möbler, lampor och annat ni ska köpa, med en egen budget per rum.</div></div>
     <div class="s"><div class="n">5</div><div><b>När det är klart och betalt</b><br>Tryck på rutan så blir saken avbockad. Skriv in <i>Faktisk kostnad</i> när ni vet vad det blev. Då används den i stället för uppskattningen.</div></div>
@@ -820,7 +925,7 @@ function viewHelp() {
     <p><b>Vad är skillnaden på uppskattat och prognos?</b><br>Uppskattat är det ni tror att det kostar. Prognos är det slutliga läget: faktisk kostnad där ni skrivit in den, annars uppskattningen.</p>
     <p><b>Kan vi ångra en radering?</b><br>Nej, så fråga varandra först. Vill ni behålla en sak utan att räkna med den, sätt kostnaden till 0.</p>
     <p><b>Ser vi varandras ändringar?</b><br>${S.mode === 'shared' ? 'Ja, direkt, på alla enheter.' : 'Inte än. Verktyget är inte kopplat till Firebase, så allt sparas bara i den här webbläsaren. Se README.md för hur ni kopplar på delning.'}</p></div>
-  <div class="card" style="margin-top:14px"><h3>Inställningar</h3><div class="f" style="margin-top:10px"><label>Namn på projektet</label><input type="text" id="s_title" value="${esc(S.settings.title || '')}" placeholder="Villa Solviken"></div>
+  <div class="card" style="margin-top:14px"><h3>Inställningar</h3><div class="f" style="margin-top:10px"><label>Bild på huset</label><div class="hint">Välj ett foto så visas det överst på sidan. Utan foto visas en målad vy över viken.</div><div class="herophoto"><label class="btn ghost small" style="margin:0;cursor:pointer">${ic('camera', 16)} Välj foto<input type="file" id="heroFile" accept="image/*"></label>${S.settings.hero ? '<button class="btn ghost small" data-act="heroClear">Ta bort foto</button>' : ''}</div></div><div class="f" style="margin-top:10px"><label>Namn på projektet</label><input type="text" id="s_title" value="${esc(S.settings.title || '')}" placeholder="Villa Solviken"></div>
     <div class="row wrapx"><button class="btn small" data-act="saveTitle">Spara namn</button>${S.mode === 'shared' ? '<button class="btn ghost small" data-act="logout">Logga ut</button>' : ''}</div></div>`;
 }
 
@@ -840,9 +945,9 @@ function itemForm(kind, id, roomPref) {
   <form id="itemform" data-kind="${kind}" data-id="${id || ''}">
   <div class="f"><label>Rum</label><select name="room">${rooms().map(r => `<option value="${r.id}" ${r.id === it.room ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select></div>
   <div class="f"><label>${isReno ? 'Vad ska göras?' : 'Vad ska köpas?'}</label><input type="text" name="title" value="${esc(it.title || '')}" placeholder="${isReno ? 't.ex. Lägga nytt golv' : 't.ex. Soffa'}"></div>
-  <div class="f"><label>${isReno ? 'Vem gör det / vad är det?' : 'Typ'}</label>${opts('type', isReno ? RENO_TYPES : INRED_TYPES, it.type)}</div>
-  ${isReno ? `<div class="f" id="matbox"><label>Välj från prislistan (material eller timarvode)</label><select name="priceId"><option value="">– Skriv in en summa själv –</option>${S.prices.map(p => `<option value="${p.id}" ${p.id === it.priceId ? 'selected' : ''}>${esc(p.name)} (${krP(num(p.price))}/${esc(p.unit)})</option>`).join('')}</select>
-     <div id="qtybox" style="margin-top:8px"><label>Antal (st, meter eller timmar)</label><input type="text" inputmode="decimal" autocomplete="off" name="qty" value="${esc(it.qty ?? '')}"><div id="calc" class="calc" style="margin-top:8px"></div></div></div>` : ''}
+  <div class="f"><label>${isReno ? 'Vem gör det / vad är det?' : 'Typ'}</label>${opts('type', isReno ? RENO_TYPES : INRED_TYPES, (isReno ? RENO_TYPES : INRED_TYPES).includes(it.type) ? it.type : (isReno ? 'Övrigt' : it.type))}</div>
+  ${isReno ? `<div class="f" id="matbox"><label id="pricelabel">Räkna ut från prislistan (valfritt)</label><select name="priceId"></select>
+     <div id="qtybox" style="margin-top:8px"><div id="areabox" style="display:none;margin-bottom:10px"><div class="f2"><div class="f" style="margin-bottom:6px"><label>Yta (m²)</label><input type="text" inputmode="decimal" autocomplete="off" name="area" value="${esc(it.area ?? '')}" placeholder="t.ex. 20"></div><div class="f" style="margin-bottom:6px"><label>Spill (%)</label><input type="text" inputmode="decimal" autocomplete="off" name="spill" value="${esc(it.spill ?? 10)}"></div></div><div class="hint" style="font-size:13px;color:var(--muted)">Skriv ytan, så räknas antalet ut och avrundas uppåt. Spill är kapavfall, ofta 5–10 %. Lämna ytan tom om ni hellre anger antal.</div></div><label>Antal (st, meter eller timmar)</label><input type="text" inputmode="decimal" autocomplete="off" name="qty" value="${esc(it.qty ?? '')}"><div id="calc" class="calc" style="margin-top:8px"></div></div></div>` : ''}
   <div class="f" id="estbox"><label>Uppskattad kostnad (kr)</label><input type="text" inputmode="decimal" autocomplete="off" name="est" value="${it.priceId ? '' : esc(it.est ?? '')}" placeholder="0"><div class="hint">Det ni tror att det kommer kosta, inklusive moms.</div></div>
   <div class="f"><label>Faktisk kostnad (kr)</label><input type="text" inputmode="decimal" autocomplete="off" name="actual" value="${hasActual(it) ? esc(it.actual) : ''}" placeholder="Fyll i när det är betalt"><div class="hint">Lämna tomt tills ni vet vad det blev.</div></div>
   ${isReno ? `<div class="f"><label>Ansvarig / hantverkare</label><input type="text" name="who" value="${esc(it.who || '')}" placeholder="t.ex. Elektriker Nilsson, eller Magnus"></div>
@@ -896,11 +1001,25 @@ function refreshItemForm() {
   const f = $('#itemform'); if (!f || f.dataset.kind !== 'reno') return;
   const type = f.elements.type.value, mat = type === 'Material' || type === 'Hantverkare';
   $('#matbox').style.display = mat ? '' : 'none';
+  if (mat && f.dataset.ptype !== type) {
+    const sel = f.elements.priceId, cur = f.dataset.ptype === undefined ? (S.items.find(x => x.id === f.dataset.id)?.priceId || '') : sel.value;
+    const list = S.prices.filter(p => (p.unit === 'timme') === (type === 'Hantverkare'));
+    sel.innerHTML = `<option value="">– Skriv in en summa själv –</option>` + list.map(p => `<option value="${p.id}" ${p.id === cur ? 'selected' : ''}>${esc(p.name)} (${krP(num(p.price))}/${esc(p.unit)})</option>`).join('');
+    $('#pricelabel').textContent = type === 'Hantverkare' ? 'Timarvode ur prislistan (valfritt)' : 'Material ur prislistan (valfritt)';
+    f.dataset.ptype = type;
+  }
   const pid = mat ? f.elements.priceId.value : '';
   $('#qtybox').style.display = pid ? '' : 'none';
   $('#estbox').style.display = pid ? 'none' : '';
-  const p = priceOf(pid);
-  $('#calc').textContent = p && !num(p.price) ? 'Priset är inte satt än. Fyll i det i prislistan, så räknas kostnaden ut automatiskt.' : p ? `${f.elements.qty.value || 0} ${p.unit} × ${krP(num(p.price))} = ${kr(num(p.price) * num(f.elements.qty.value))}` : '';
+  const p = priceOf(pid), cov = p ? num(p.cover) : 0;
+  $('#areabox').style.display = p && cov > 0 ? '' : 'none';
+  const area = num(f.elements.area.value), spill = num(f.elements.spill.value);
+  let q = num(f.elements.qty.value), extra = '';
+  if (p && cov > 0 && area > 0) {
+    q = Math.ceil(area * (1 + spill / 100) / cov - 1e-9);
+    extra = `${f.elements.area.value} m² + ${spill} % spill = ${(area * (1 + spill / 100)).toFixed(1).replace('.', ',')} m² → `;
+  }
+  $('#calc').textContent = p && !num(p.price) ? 'Priset är inte satt än. Fyll i det i prislistan, så räknas kostnaden ut automatiskt.' : p ? `${extra}${q} ${p.unit} × ${krP(num(p.price))} = ${kr(num(p.price) * q)}` : '';
 }
 async function submitItem(f) {
   const d = new FormData(f), kind = f.dataset.kind, id = f.dataset.id || null;
@@ -910,6 +1029,8 @@ async function submitItem(f) {
   const data = {kind, room: d.get('room'), title: String(d.get('title')).trim(), type: d.get('type'),
     priceId: useP ? d.get('priceId') : '', qty: useP ? num(d.get('qty')) : null, est: useP ? 0 : num(d.get('est')),
     actual: actualRaw === '' ? null : num(actualRaw), done: d.get('done') === 'on', note: String(d.get('note') || '').trim()};
+  const pr = useP ? priceOf(d.get('priceId')) : null, useArea = !!(pr && num(pr.cover) > 0 && num(d.get('area')) > 0);
+  data.area = useArea ? num(d.get('area')) : null; data.spill = useArea ? num(d.get('spill')) : null;
   if (isReno) Object.assign(data, {who: String(d.get('who') || '').trim(), start: d.get('start') || '', end: d.get('end') || '', dep: d.get('dep') || ''});
   else Object.assign(data, {store: String(d.get('store') || '').trim(), prio: d.get('prio') || 'Bra att ha'});
   if (!id) data.created = Date.now();
@@ -937,6 +1058,7 @@ function priceForm(id, hour) {
   <div class="f"><label>Artikel</label><input type="text" name="name" value="${esc(p.name)}" placeholder="${hour ? 't.ex. Målare – timarvode' : 't.ex. Gipsskiva 13 mm 900×2400'}"></div>
   <div class="f2"><div class="f"><label>Enhet</label><select name="unit">${UNITS.map(u => `<option ${u === p.unit ? 'selected' : ''}>${u}</option>`).join('')}</select></div>
   <div class="f"><label>Pris per enhet (kr, inkl. moms)</label><input type="text" inputmode="decimal" autocomplete="off" name="price" value="${esc(p.price)}" placeholder="${hour ? 'Lämna tomt om ni inte vet än' : ''}" ><div class="hint">${hour || p.unit === 'timme' ? 'Timarvode inklusive moms (pris exkl. moms × 1,25). Kan fyllas i senare.' : ''}</div></div></div>
+  <div class="f"><label>Täcker (m² per enhet, valfritt)</label><input type="text" inputmode="decimal" autocomplete="off" name="cover" value="${esc(num(p.cover) ? String(p.cover).replace('.', ',') : '')}" placeholder="t.ex. 2,16 för en gipsskiva 2400×900"><div class="hint">Fyll i om ni vill kunna skriva in en yta i stället för antal. För artiklar som säljs per meter: m² per löpmeter, till exempel 0,095 för 95 mm bredd.</div></div>
   <div class="f"><label>Källa</label><input type="text" name="source" value="${esc(p.source || '')}" placeholder="t.ex. Anders Trä, faktura 2026-10-12"></div>
   <div id="formerr" class="bad" style="margin-top:6px;font-weight:600"></div><div class="btns"><button class="btn" type="button" data-act="submitForm">Spara</button><button class="btn ghost" type="button" data-act="closeModal">Avbryt</button>${id ? '<button class="btn danger" type="button" data-act="delPrice" data-id="' + id + '">Ta bort</button>' : ''}</div></form>`);
 }
@@ -991,6 +1113,7 @@ document.addEventListener('click', async e => {
     case 'print': window.print(); break;
     case 'csv': csv(); break;
     case 'saveTitle': await Store.save('settings', 'main', {title: $('#s_title').value.trim()}); break;
+    case 'heroClear': await Store.save('settings', 'main', {hero: ''}); break;
     case 'logout': Store.signOut(); break;
   }
 });
@@ -1013,7 +1136,7 @@ async function handleForm(f) {
       const d = new FormData(f), id = f.dataset.id || null, name = String(d.get('name')).trim();
       if (!name) return err('Skriv ett namn på artikeln.');
       if (!String(d.get('price')).trim() && d.get('unit') !== 'timme') return err('Skriv ett pris per enhet.');
-      await Store.save('prices', id, {name, unit: d.get('unit'), price: num(d.get('price')), source: String(d.get('source') || '').trim()});
+      await Store.save('prices', id, {name, unit: d.get('unit'), price: num(d.get('price')), cover: num(d.get('cover')), source: String(d.get('source') || '').trim()});
       closeModal(); toast('Sparat ✓'); return;
     }
     if (f.id === 'login') {
@@ -1021,6 +1144,7 @@ async function handleForm(f) {
     }
   } catch (e) { err('Det gick inte att spara: ' + errText(e)); }
 }
+document.addEventListener('change', async e => { if (e.target.id === 'heroFile') { try { await setHeroFile(e.target.files[0]); } catch (err) { toast(errText(err), true); } } });
 document.addEventListener('submit', e => { e.preventDefault(); handleForm(e.target); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.matches('input:not([type=checkbox]):not([type=radio])') && e.target.form) { e.preventDefault(); handleForm(e.target.form); }
